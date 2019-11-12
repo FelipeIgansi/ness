@@ -300,7 +300,7 @@
 
                     <?php
 
-                    function gerar_senha($tamanho, $maiusculas, $minusculas, $numeros, $simbolos)
+                    function gerar_senha($tamanho, $numeros, $maiusculas, $minusculas, $simbolos)
                     {
                         $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
                         $mi = "abcdefghijklmnopqrstuvyxwz"; // $mi contem as letras minusculas
@@ -348,7 +348,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label>Quantos caracteres</label>
-                                    <input type="number" class="form-control" id="num_carac" name="digi" min="4">
+                                    <input type="number" class="form-control" id="num_carac" name="digi" value="4" min="4">
                                 </div>
 
 
@@ -363,7 +363,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check">
+                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check" checked>
                                             <label class="custom-control-label" for="maius_check">Maiusculas</label>
                                         </div>
                                     </div>
@@ -371,10 +371,19 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check">
+                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check" checked>
                                             <label class="custom-control-label" for="minus_check">Minusculas</label>
                                         </div>
                                     </div>
+
+
+                                    <div class="col-auto my-1">
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input" name="caracEspeciais" id="caracEspeciais_check" checked>
+                                            <label class="custom-control-label" for="caracEspeciais_check">Caracteres Especiais</label>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <br />
@@ -385,9 +394,30 @@
                                     $digitos = $_POST["digi"];
                                     $num = $_POST["num"];
                                     $maius = $_POST["maius"];
-                                    $minus = $_POST["minus"]
-                                    var_dump ($digitos, $num, $maius, $minus);
-                                    //echo htmlspecialchars(geraAleatorio($_POST["v"]));
+                                    $minus = $_POST["minus"];
+                                    $caracEsp = $_POST["caracEspeciais"];
+                                    if ($num == false) {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], false, true, true, true));
+                                    } else {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
+                                    }
+                                    if ($maius == false) {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, false, true, true));
+                                    } else {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
+                                    }
+                                    if ($minus == false) {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, false, true));
+                                    } else {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
+                                    }
+                                    if ($caracEsp == false) {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, false));
+                                    } else {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
+                                    }
+
+
                                     ?>
                                 </textarea>
 
@@ -409,7 +439,7 @@
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2019</span>
+                                <span>Copyright &copy; Felipe2019</span>
                             </div>
                         </div>
                     </footer>
