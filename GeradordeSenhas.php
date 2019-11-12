@@ -168,7 +168,8 @@
                                         </div>
                                         <div>
                                             <div class="small text-gray-500">December 12, 2019</div>
-                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                            <span class="font-weight-bold">A new monthly report is ready to
+                                                download!</span>
                                         </div>
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
@@ -193,7 +194,8 @@
                                             Spending Alert: We've noticed unusually high spending for your account.
                                         </div>
                                     </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All
+                                        Alerts</a>
                                 </div>
                             </li>
 
@@ -215,7 +217,8 @@
                                             <div class="status-indicator bg-success"></div>
                                         </div>
                                         <div class="font-weight-bold">
-                                            <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                                            <div class="text-truncate">Hi there! I am wondering if you can help me with
+                                                a problem I've been having.</div>
                                             <div class="small text-gray-500">Emily Fowler · 58m</div>
                                         </div>
                                     </a>
@@ -225,7 +228,8 @@
                                             <div class="status-indicator"></div>
                                         </div>
                                         <div>
-                                            <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                                            <div class="text-truncate">I have the photos that you ordered last month,
+                                                how would you like them sent to you?</div>
                                             <div class="small text-gray-500">Jae Chun · 1d</div>
                                         </div>
                                     </a>
@@ -235,7 +239,8 @@
                                             <div class="status-indicator bg-warning"></div>
                                         </div>
                                         <div>
-                                            <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                                            <div class="text-truncate">Last month's report looks great, I am very happy
+                                                with the progress so far, keep up the good work!</div>
                                             <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                         </div>
                                     </a>
@@ -245,11 +250,14 @@
                                             <div class="status-indicator bg-success"></div>
                                         </div>
                                         <div>
-                                            <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                                            <div class="text-truncate">Am I a good boy? The reason I ask is because
+                                                someone told me that people say this to all dogs, even if they aren't
+                                                good...</div>
                                             <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                         </div>
                                     </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More
+                                        Messages</a>
                                 </div>
                             </li>
 
@@ -289,80 +297,171 @@
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
+
+                    <?php
+
+                    function gerar_senha($tamanho, $maiusculas, $minusculas, $numeros, $simbolos)
+                    {
+                        $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
+                        $mi = "abcdefghijklmnopqrstuvyxwz"; // $mi contem as letras minusculas
+                        $nu = "0123456789"; // $nu contem os números
+                        $si = "!@#$%¨&*()_+="; // $si contem os símbolos
+
+                        if ($maiusculas) {
+                            // se $maiusculas for "true", a variável $ma é embaralhada e adicionada para a variável $senha
+                            $senha .= str_shuffle($ma);
+                        }
+
+                        if ($minusculas) {
+                            // se $minusculas for "true", a variável $mi é embaralhada e adicionada para a variável $senha
+                            $senha .= str_shuffle($mi);
+                        }
+
+                        if ($numeros) {
+                            // se $numeros for "true", a variável $nu é embaralhada e adicionada para a variável $senha
+                            $senha .= str_shuffle($nu);
+                        }
+
+                        if ($simbolos) {
+                            // se $simbolos for "true", a variável $si é embaralhada e adicionada para a variável $senha
+                            $senha .= str_shuffle($si);
+                        }
+
+                        // retorna a senha embaralhada com "str_shuffle" com o tamanho definido pela variável $tamanho
+                        return substr(str_shuffle($senha), 0, $tamanho);
+                    }
+
+                    ?>
+
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Contas</h1>
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Adicionar Conta</a>
-                        </div>
-
-                        <!-- Content Row -->
-                        <div class="row">
-                            <?php
-                                    echo 'Ola Mundo!';
-
-                            ?>
+                            <h1 class="h3 mb-0 text-gray-800">Gerador de senhas</h1>
+                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Adicionar
+                                Conta
+                            </a>
                         </div>
 
 
+                        <form method="post">
+                            <div class="row">
+                                <div class="col">
+                                    <label>Quantos caracteres</label>
+                                    <input type="number" class="form-control" id="num_carac" name="digi" min="4">
+                                </div>
 
-                        <!-- Footer -->
-                        <footer class="sticky-footer bg-white">
-                            <div class="container my-auto">
-                                <div class="copyright text-center my-auto">
-                                    <span>Copyright &copy; Your Website 2019</span>
+
+                                <div class="form-check form-check-inline">
+                                    <div class="col-auto my-1">
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input" name="num" id="num_check" checked>
+                                            <label class="custom-control-label" for="num_check">Numeros</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-auto my-1">
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check">
+                                            <label class="custom-control-label" for="maius_check">Maiusculas</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-auto my-1">
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check">
+                                            <label class="custom-control-label" for="minus_check">Minusculas</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </footer>
-                        <!-- End of Footer -->
+                            <br />
+                            <center>
+                                <textarea style="text-align: center;" class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>
+                                    <?php
+
+                                    $digitos = $_POST["digi"];
+                                    $num = $_POST["num"];
+                                    $maius = $_POST["maius"];
+                                    $minus = $_POST["minus"]
+                                    var_dump ($digitos, $num, $maius, $minus);
+                                    //echo htmlspecialchars(geraAleatorio($_POST["v"]));
+                                    ?>
+                                </textarea>
+
+                            </center>
+                            <br />
+                            <center><button class="btn btn-success">Gerar</button></center>
 
                     </div>
-                    <!-- End of Content Wrapper -->
+                    </form>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                    </div>
+
+
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; Your Website 2019</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
 
                 </div>
-                <!-- End of Page Wrapper -->
+                <!-- End of Content Wrapper -->
 
-                <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
+            </div>
+            <!-- End of Page Wrapper -->
 
-                <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="login.html">Logout</a>
-                            </div>
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Bootstrap core JavaScript-->
-                <script src="vendor/jquery/jquery.min.js"></script>
-                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                <!-- Core plugin JavaScript-->
-                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                <!-- Custom scripts for all pages-->
-                <script src="js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
 
-                <!-- Page level plugins -->
-                <script src="vendor/chart.js/Chart.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
 
-                <!-- Page level custom scripts -->
-                <script src="js/demo/chart-area-demo.js"></script>
-                <script src="js/demo/chart-pie-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="js/demo/chart-area-demo.js"></script>
+            <script src="js/demo/chart-pie-demo.js"></script>
 
     </body>
 
