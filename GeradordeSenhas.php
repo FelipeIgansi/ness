@@ -20,7 +20,6 @@
 </head>
 
 <body>
-
     <body id="page-top">
 
         <!-- Page Wrapper -->
@@ -355,7 +354,7 @@
                                 <div class="form-check form-check-inline">
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="num" id="num_check" checked>
+                                            <input type="checkbox" class="custom-control-input" name="num" id="num_check" value="true"  checked>
                                             <label class="custom-control-label" for="num_check">Numeros</label>
                                         </div>
                                     </div>
@@ -363,7 +362,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check" checked>
+                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check" value="true"  >
                                             <label class="custom-control-label" for="maius_check">Maiusculas</label>
                                         </div>
                                     </div>
@@ -371,7 +370,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check" checked>
+                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check" value="true" >
                                             <label class="custom-control-label" for="minus_check">Minusculas</label>
                                         </div>
                                     </div>
@@ -379,8 +378,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="caracEspeciais" id="caracEspeciais_check" checked>
-                                            <label class="custom-control-label" for="caracEspeciais_check">Caracteres Especiais</label>
+                                            <input type="checkbox" class="custom-control-input" name="caracEspeciais" id="caracEspeciais_check" value="true"  >                                            <label class="custom-control-label" for="caracEspeciais_check">Caracteres Especiais</label>
                                         </div>
                                     </div>
 
@@ -390,32 +388,25 @@
                             <center>
                                 <textarea style="text-align: center;" class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>
                                     <?php
-
+                                    
                                     $digitos = $_POST["digi"];
                                     $num = $_POST["num"];
                                     $maius = $_POST["maius"];
                                     $minus = $_POST["minus"];
                                     $caracEsp = $_POST["caracEspeciais"];
-                                    if ($num == false) {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], false, true, true, true));
-                                    } else {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
+                                    if ($num == true) {
+                                        echo htmlspecialchars(gerar_senha($_POST["digi"], false, off, off, off));
+                                        echo htmlspecialchars($_POST["digi"], $num, $maius, $minus, $caracEsp);
                                     }
-                                    if ($maius == false) {
+                                    if ($maius == true) {
                                         echo htmlspecialchars(gerar_senha($_POST["digi"], true, false, true, true));
-                                    } else {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
-                                    }
-                                    if ($minus == false) {
+                                    } 
+                                    if ($minus == true) {
                                         echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, false, true));
-                                    } else {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
-                                    }
-                                    if ($caracEsp == false) {
+                                    } 
+                                    if ($caracEsp == true) {
                                         echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, false));
-                                    } else {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, true));
-                                    }
+                                    } 
 
 
                                     ?>
