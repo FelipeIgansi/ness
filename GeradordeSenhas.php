@@ -315,7 +315,7 @@
                             // se $minusculas for "true", a variável $mi é embaralhada e adicionada para a variável $senha
                             $senha .= str_shuffle($mi);
                         }
-
+  
                         if ($numeros) {
                             // se $numeros for "true", a variável $nu é embaralhada e adicionada para a variável $senha
                             $senha .= str_shuffle($nu);
