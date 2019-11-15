@@ -342,8 +342,8 @@
                             </a>
                         </div>
 
-
-                        <form method="post">
+                        
+                        <form method="get" action="mostrarResultado.php">
                             <div class="row">
                                 <div class="col">
                                     <label>Quantos caracteres</label>
@@ -378,7 +378,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="caracEspeciais" id="caracEspeciais_check" value="true"  >                                            <label class="custom-control-label" for="caracEspeciais_check">Caracteres Especiais</label>
+                                            <input type="checkbox" class="custom-control-input" name="caracespeciais" id="caracespeciais_check" value="true"  >                                            <label class="custom-control-label" for="caracespeciais_check">Caracteres Especiais</label>
                                         </div>
                                     </div>
 
@@ -393,7 +393,7 @@
                                     $num = $_POST["num"];
                                     $maius = $_POST["maius"];
                                     $minus = $_POST["minus"];
-                                    $caracEsp = $_POST["caracEspeciais"];
+                                    $caracEsp = $_POST["caracespeciais"];
                                     if ($num == true) {
                                         echo htmlspecialchars(gerar_senha($_POST["digi"], false, off, off, off));
                                         echo htmlspecialchars($_POST["digi"], $num, $maius, $minus, $caracEsp);
