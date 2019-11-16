@@ -301,31 +301,52 @@
 
                     function gerar_senha($tamanho, $numeros, $maiusculas, $minusculas, $simbolos)
                     {
-                        $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
-                        $mi = "abcdefghijklmnopqrstuvyxwz"; // $mi contem as letras minusculas
-                        $nu = "0123456789"; // $nu contem os números
-                        $si = "!@#$%¨&*()_+="; // $si contem os símbolos
-
-                        if ($maiusculas) {
+                        $ma = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","Y","X","W","Z");
+                        $mi = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","y","x","w","z");
+                        $si = array("[","]","{","}","!","@","#","$","%","&","*","(",")","+","-","/","=");
+            
+                        if ($maiusculas == "true") {
                             // se $maiusculas for "true", a variável $ma é embaralhada e adicionada para a variável $senha
-                            $senha .= str_shuffle($ma);
+                            
+                            do{
+                                for($i = 0; $i < $tamanho; $i++){
+                                    $senha .= $ma[rand(0,count($ma))];
+                                }   
+                            }while(count($senha) == $tamanho);
+                            
+                            //$senha .= str_shuffle($ma);
                         }
-
-                        if ($minusculas) {
+            
+                        if ($minusculas == "true") {
                             // se $minusculas for "true", a variável $mi é embaralhada e adicionada para a variável $senha
-                            $senha .= str_shuffle($mi);
+                            
+                            do{
+                                for($i = 0; $i < $tamanho; $i++){
+                                    $senha .= $mi[rand(0,count($mi))];
+                                }   
+                            }while(count($senha) == $tamanho);
+                            
+                            //$senha .= str_shuffle($mi);
                         }
-  
-                        if ($numeros) {
+            
+                        if ($numeros == "true") {
                             // se $numeros for "true", a variável $nu é embaralhada e adicionada para a variável $senha
-                            $senha .= str_shuffle($nu);
+                            for($i = 0; $i < $tamanho; $i++){
+                                $senha .= rand(0,9);
+                            }
+                            
                         }
-
-                        if ($simbolos) {
+            
+                        if ($simbolos == "true") {
                             // se $simbolos for "true", a variável $si é embaralhada e adicionada para a variável $senha
-                            $senha .= str_shuffle($si);
+                            do{
+                                for($i = 0; $i < $tamanho; $i++){
+                                    $senha .= $si[rand(0,count($si))];
+                                }   
+                            }while((strlen($senha)) == $tamanho);
+                            
                         }
-
+             
                         // retorna a senha embaralhada com "str_shuffle" com o tamanho definido pela variável $tamanho
                         return substr(str_shuffle($senha), 0, $tamanho);
                     }
@@ -343,11 +364,11 @@
                         </div>
 
                         
-                        <form method="get" action="mostrarResultado.php">
+                        <form method="post" >
                             <div class="row">
                                 <div class="col">
                                     <label>Quantos caracteres</label>
-                                    <input type="number" class="form-control" id="num_carac" name="digi" value="4" min="4">
+                                    <input type="number" class="form-control" id="num_carac" name="digi" placeholder="Quantos digitos deseja?" min="4">
                                 </div>
 
 
@@ -394,19 +415,9 @@
                                     $maius = $_POST["maius"];
                                     $minus = $_POST["minus"];
                                     $caracEsp = $_POST["caracespeciais"];
-                                    if ($num == true) {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], false, off, off, off));
-                                        echo htmlspecialchars($_POST["digi"], $num, $maius, $minus, $caracEsp);
-                                    }
-                                    if ($maius == true) {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, false, true, true));
-                                    } 
-                                    if ($minus == true) {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, false, true));
-                                    } 
-                                    if ($caracEsp == true) {
-                                        echo htmlspecialchars(gerar_senha($_POST["digi"], true, true, true, false));
-                                    } 
+                                    echo htmlspecialchars(gerar_senha($_POST["digi"], $num, $maius, $minus, $caracEsp));
+                                        //echo htmlspecialchars($_POST["digi"], $num, $maius, $minus, $caracEsp);
+                                   
 
 
                                     ?>
