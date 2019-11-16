@@ -15,18 +15,32 @@
 
         function gerar_senha($tamanho, $numeros, $maiusculas, $minusculas, $simbolos)
         {
-            $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
-            $mi = "abcdefghijklmnopqrstuvyxwz"; // $mi contem as letras minusculas    
-            $si = array("[","]","{","}","^","~","!","@","#","$","%","&","*","(",")","_","+","-","/","="); // $si contem os símbolos
+            $ma = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","Y","X","W","Z");
+            $mi = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","y","x","w","z");
+            $si = array("[","]","{","}","!","@","#","$","%","&","*","(",")","+","-","/","=");
 
             if ($maiusculas == "true") {
                 // se $maiusculas for "true", a variável $ma é embaralhada e adicionada para a variável $senha
-                $senha .= str_shuffle($ma);
+                
+                do{
+                    for($i = 0; $i < $tamanho; $i++){
+                        $senha .= $ma[rand(0,count($ma))];
+                    }   
+                }while(count($senha) == $tamanho);
+                
+                //$senha .= str_shuffle($ma);
             }
 
             if ($minusculas == "true") {
                 // se $minusculas for "true", a variável $mi é embaralhada e adicionada para a variável $senha
-                $senha .= str_shuffle($mi);
+                
+                do{
+                    for($i = 0; $i < $tamanho; $i++){
+                        $senha .= $mi[rand(0,count($mi))];
+                    }   
+                }while(count($senha) == $tamanho);
+                
+                //$senha .= str_shuffle($mi);
             }
 
             if ($numeros == "true") {
@@ -43,7 +57,7 @@
                     for($i = 0; $i < $tamanho; $i++){
                         $senha .= $si[rand(0,count($si))];
                     }   
-                }while(count($senha) == $tamanho);
+                }while((strlen($senha)) == $tamanho);
                 
             }
  
@@ -61,13 +75,10 @@
             $minuscula = $_GET['minus'];
             $carac = $_GET['caracespeciais'];
 
-            for ($i=0; $i < 10; $i++) { 
-                echo '<br><br>  Senha:  ', gerar_senha($digitos, $numeros, $maiuscula, $minuscula, $carac), "   <br>Tamanho:  ",strlen(gerar_senha($digitos, $numeros, $maiuscula, $minuscula, $carac));
-
-            }
+            
 
 
-            //echo 'Senha:  ', gerar_senha($digitos, $numeros, $maiuscula, $minuscula, $carac), "   <br>Tamanho:  ",strlen(gerar_senha($digitos, $numeros, $maiuscula, $minuscula, $carac));
+            echo 'Senha:  ', gerar_senha($digitos, $numeros, $maiuscula, $minuscula, $carac), "   <br>Tamanho:  ",strlen(gerar_senha($digitos, $numeros, $maiuscula, $minuscula, $carac));
 
             echo '<br/><br/><br/><br/>';
 
