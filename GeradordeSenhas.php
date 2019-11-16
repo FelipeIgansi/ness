@@ -406,24 +406,22 @@
                                 </div>
                             </div>
                             <br />
-                            <center>
                                 <textarea style="text-align: center;" class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>
                                     <?php
                                     
-                                    $digitos = $_POST["digi"];
-                                    $num = $_POST["num"];
-                                    $maius = $_POST["maius"];
-                                    $minus = $_POST["minus"];
-                                    $caracEsp = $_POST["caracespeciais"];
-                                    echo htmlspecialchars(gerar_senha($_POST["digi"], $num, $maius, $minus, $caracEsp));
-                                        //echo htmlspecialchars($_POST["digi"], $num, $maius, $minus, $caracEsp);
+                                        $digitos = $_POST["digi"];
+                                        $num = $_POST["num"];
+                                        $maius = $_POST["maius"];
+                                        $minus = $_POST["minus"];
+                                        $caracEsp = $_POST["caracespeciais"];
+                                        echo htmlspecialchars(trim(gerar_senha($_POST["digi"], $num, $maius, $minus, $caracEsp)));
+                                            //echo htmlspecialchars($_POST["digi"], $num, $maius, $minus, $caracEsp);
                                    
 
 
                                     ?>
                                 </textarea>
 
-                            </center>
                             <br />
                             <center><button class="btn btn-success">Gerar</button></center>
 
