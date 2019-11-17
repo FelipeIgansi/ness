@@ -304,33 +304,31 @@
                         $ma = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","Y","X","W","Z");
                         $mi = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","y","x","w","z");
                         $si = array("[","]","{","}","!","@","#","$","%","&","*","(",")","+","-","/","=");
-            
+                        $senha = null;
                         if ($maiusculas == "true") {
-                            // se $maiusculas for "true", a variável $ma é embaralhada e adicionada para a variável $senha
                             
-                            do{
+                            
+                            
                                 for($i = 0; $i < $tamanho; $i++){
                                     $senha .= $ma[rand(0,count($ma))];
                                 }   
-                            }while(count($senha) == $tamanho);
+                            
                             
                             //$senha .= str_shuffle($ma);
                         }
             
                         if ($minusculas == "true") {
-                            // se $minusculas for "true", a variável $mi é embaralhada e adicionada para a variável $senha
                             
                             do{
                                 for($i = 0; $i < $tamanho; $i++){
                                     $senha .= $mi[rand(0,count($mi))];
                                 }   
-                            }while(count($senha) == $tamanho);
+                            }while(strlen($senha) == $tamanho);
                             
                             //$senha .= str_shuffle($mi);
                         }
             
                         if ($numeros == "true") {
-                            // se $numeros for "true", a variável $nu é embaralhada e adicionada para a variável $senha
                             for($i = 0; $i < $tamanho; $i++){
                                 $senha .= rand(0,9);
                             }
@@ -338,7 +336,6 @@
                         }
             
                         if ($simbolos == "true") {
-                            // se $simbolos for "true", a variável $si é embaralhada e adicionada para a variável $senha
                             do{
                                 for($i = 0; $i < $tamanho; $i++){
                                     $senha .= $si[rand(0,count($si))];
@@ -347,7 +344,6 @@
                             
                         }
              
-                        // retorna a senha embaralhada com "str_shuffle" com o tamanho definido pela variável $tamanho
                         return substr(str_shuffle($senha), 0, $tamanho);
                     }
 
@@ -405,8 +401,8 @@
 
                                 </div>
                             </div>
-                            <br />
-                                <textarea style="text-align: center;" class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>
+                            <br>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" readonly>
                                     <?php
                                     
                                         $digitos = $_POST["digi"];
@@ -414,11 +410,7 @@
                                         $maius = $_POST["maius"];
                                         $minus = $_POST["minus"];
                                         $caracEsp = $_POST["caracespeciais"];
-                                        echo htmlspecialchars(trim(gerar_senha($_POST["digi"], $num, $maius, $minus, $caracEsp)));
-                                            //echo htmlspecialchars($_POST["digi"], $num, $maius, $minus, $caracEsp);
-                                   
-
-
+                                        echo htmlspecialchars(gerar_senha($digitos, $num, $maius, $minus, $caracEsp));
                                     ?>
                                 </textarea>
 
