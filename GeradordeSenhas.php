@@ -20,6 +20,7 @@
 </head>
 
 <body>
+<?php error_reporting(0); ?>
     <body id="page-top">
 
         <!-- Page Wrapper -->
@@ -301,49 +302,39 @@
 
                     function gerar_senha($tamanho, $numeros, $maiusculas, $minusculas, $simbolos)
                     {
-                        $ma = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","Y","X","W","Z");
-                        $mi = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","y","x","w","z");
-                        $si = array("[","]","{","}","!","@","#","$","%","&","*","(",")","+","-","/","=");
+                        $ma = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "Y", "X", "W", "Z");
+                        $mi = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "x", "w", "z");
+                        $si = array("[", "]", "{", "}", "!", "@", "#", "$", "%", "&", "*", "(", ")", "+", "-", "/", "=");
                         $senha = null;
                         if ($maiusculas == "true") {
-                            
-                            
-                            
-                                for($i = 0; $i < $tamanho; $i++){
-                                    $senha .= $ma[rand(0,count($ma))];
-                                }   
-                            
-                            
+
+                            for ($i = 0; $i < count($ma); $i++) {
+                                $senha .= $ma[rand(0, count($ma))];
+                            }
+
                             //$senha .= str_shuffle($ma);
                         }
-            
+
                         if ($minusculas == "true") {
-                            
-                            do{
-                                for($i = 0; $i < $tamanho; $i++){
-                                    $senha .= $mi[rand(0,count($mi))];
-                                }   
-                            }while(strlen($senha) == $tamanho);
-                            
-                            //$senha .= str_shuffle($mi);
-                        }
-            
-                        if ($numeros == "true") {
-                            for($i = 0; $i < $tamanho; $i++){
-                                $senha .= rand(0,9);
+
+                            for ($j = 0; $j < count($mi); $j++) {
+                                $senha .= $mi[rand(0, count($mi))];
                             }
-                            
                         }
-            
+
+                        if ($numeros == "true") {
+                            for ($k = 0; $k < $tamanho; $k++) {
+                                $senha .= rand(0, 9);
+                            }
+                        }
+
                         if ($simbolos == "true") {
-                            do{
-                                for($i = 0; $i < $tamanho; $i++){
-                                    $senha .= $si[rand(0,count($si))];
-                                }   
-                            }while((strlen($senha)) == $tamanho);
-                            
+
+                            for ($l = 0; $l < count($si); $l++) {
+                                $senha .= $si[rand(0, count($si))];
+                            }
                         }
-             
+
                         return substr(str_shuffle($senha), 0, $tamanho);
                     }
 
@@ -359,19 +350,19 @@
                             </a>
                         </div>
 
-                        
-                        <form method="post" >
+
+                        <form method="post">
                             <div class="row">
                                 <div class="col">
-                                    <label>Quantos caracteres</label>
-                                    <input type="number" class="form-control" id="num_carac" name="digi" placeholder="Quantos digitos deseja?" min="4">
+                                    <label>Tamanho:</label>
+                                    <input type="number" class="form-control" id="num_carac" name="digi" placeholder="Quantos digitos deseja?" min="4" value="12">
                                 </div>
 
 
                                 <div class="form-check form-check-inline">
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="num" id="num_check" value="true"  checked>
+                                            <input type="checkbox" class="custom-control-input" name="num" id="num_check" value="true" checked>
                                             <label class="custom-control-label" for="num_check">Numeros</label>
                                         </div>
                                     </div>
@@ -379,7 +370,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check" value="true"  >
+                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check" value="true" checked>
                                             <label class="custom-control-label" for="maius_check">Maiusculas</label>
                                         </div>
                                     </div>
@@ -387,7 +378,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check" value="true" >
+                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check" value="true" checked>
                                             <label class="custom-control-label" for="minus_check">Minusculas</label>
                                         </div>
                                     </div>
@@ -395,21 +386,22 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="caracespeciais" id="caracespeciais_check" value="true"  >                                            <label class="custom-control-label" for="caracespeciais_check">Caracteres Especiais</label>
+                                            <input type="checkbox" class="custom-control-input" name="carac" id="caracespeciais_check" value="true"> 
+                                            <label class="custom-control-label" for="caracespeciais_check">Caracteres Especiais</label>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
                             <br>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" readonly>
+                            <textarea style="text-align: center;" class="form-control" id="exampleFormControlTextarea1" rows="10" readonly>
                                     <?php
-                                    
+
                                         $digitos = $_POST["digi"];
                                         $num = $_POST["num"];
                                         $maius = $_POST["maius"];
                                         $minus = $_POST["minus"];
-                                        $caracEsp = $_POST["caracespeciais"];
+                                        $caracEsp = $_POST["carac"];
                                         echo htmlspecialchars(gerar_senha($digitos, $num, $maius, $minus, $caracEsp));
                                     ?>
                                 </textarea>
