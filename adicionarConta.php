@@ -20,7 +20,8 @@
 </head>
 
 <body>
-<?php error_reporting(0); ?>
+    <?php error_reporting(0); ?>
+
     <body id="page-top">
 
         <!-- Page Wrapper -->
@@ -273,11 +274,11 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Perfil
+                                       Perfil
                                     </a>
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Configurações
+                                       Configurações
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -294,183 +295,103 @@
 
                     <!-- Begin Page Content -->
 
-                    <?php
-
-                    function gerar_senha($tamanho, $numeros, $maiusculas, $minusculas, $simbolos)
-                    {
-                        $ma = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "Y", "X", "W", "Z");
-                        $mi = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "x", "w", "z");
-                        $si = array("[", "]", "{", "}", "!", "@", "#", "$", "%", "&", "*", "(", ")", "+", "-", "/", "=");
-                        $senha = null;
-                        if ($maiusculas == "true") {
-
-                            for ($i = 0; $i < count($ma); $i++) {
-                                $senha .= $ma[rand(0, count($ma))];
-                            }
-
-                            //$senha .= str_shuffle($ma);
-                        }
-
-                        if ($minusculas == "true") {
-
-                            for ($j = 0; $j < count($mi); $j++) {
-                                $senha .= $mi[rand(0, count($mi))];
-                            }
-                        }
-
-                        if ($numeros == "true") {
-                            for ($k = 0; $k < $tamanho; $k++) {
-                                $senha .= rand(0, 9);
-                            }
-                        }
-
-                        if ($simbolos == "true") {
-
-                            for ($l = 0; $l < count($si); $l++) {
-                                $senha .= $si[rand(0, count($si))];
-                            }
-                        }
-
-                        return substr(str_shuffle($senha), 0, $tamanho);
-                    }
-
-                    ?>
-
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Gerador de senhas</h1>
-                            <a href="adicionarConta.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Adicionar Conta </a>
+                            <h1 class="h3 mb-0 text-gray-800"> Adicionar conta</h1>
                         </div>
 
 
-                        <form method="post">
-                            <div class="row">
-                                <div class="col">
-                                    <label>Tamanho:</label>
-                                    <input type="number" class="form-control" id="num_carac" name="digi" placeholder="Quantos digitos deseja?" min="4" value="12">
-                                </div>
+                        <!-- Content Row -->
+                        <div class="row">
 
-
-                                <div class="form-check form-check-inline">
-                                    <div class="col-auto my-1">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="num" id="num_check" value="true" checked>
-                                            <label class="custom-control-label" for="num_check">Numeros</label>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-auto my-1">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="maius" id="maius_check" value="true" checked>
-                                            <label class="custom-control-label" for="maius_check">Maiusculas</label>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-auto my-1">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="minus" id="minus_check" value="true" checked>
-                                            <label class="custom-control-label" for="minus_check">Minusculas</label>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-auto my-1">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="carac" id="caracespeciais_check" value="true"> 
-                                            <label class="custom-control-label" for="caracespeciais_check">Caracteres Especiais</label>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <br>
-                            <textarea style="text-align: center;" class="form-control" id="exampleFormControlTextarea1" rows="10" readonly>
-                                    <?php
-
-                                        $digitos = $_POST["digi"];
-                                        $num = $_POST["num"];
-                                        $maius = $_POST["maius"];
-                                        $minus = $_POST["minus"];
-                                        $caracEsp = $_POST["carac"];
-                                        echo htmlspecialchars(gerar_senha($digitos, $num, $maius, $minus, $caracEsp));
-                                        
-                                    ?>
-                                </textarea>
-
-                            <br />
-                            <center><button class="btn btn-success">Gerar</button></center>
-
-                    </div>
-                    </form>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                    </div>
-
-
-
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Felipe2019</span>
-                            </div>
                         </div>
-                    </footer>
-                    <!-- End of Footer -->
+
+
+
+                        <form method="post" action="#">
+                            <div class="form-group">
+                                <label for="inputName">Nome: </label>
+                                <input type="text" class="form-control" id="inputName" name="nome" placeholder="Digite seu nome..." required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">E-mail: </label>
+                                    <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="E-mail" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Senha: </label>
+                                    <input type="password" class="form-control" id="inputPassword4" name="senha" placeholder="Senha" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputURL">URL: </label>
+                                <input type="text" class="form-control" id="inputURL" name="url" placeholder="Digite o link do site">
+                            </div>                            
+                            <button type="submit" class="btn btn-primary">Criar conta</button>
+                        </form>
+
+
+
+
+                        <!-- Footer -->
+                        <footer class="sticky-footer bg-white">
+                            <div class="container my-auto">
+                                <div class="copyright text-center my-auto">
+                                    <span>Copyright &copy; Felipe2019</span>
+                                </div>
+                            </div>
+                        </footer>
+                        <!-- End of Footer -->
+
+                    </div>
+                    <!-- End of Content Wrapper -->
 
                 </div>
-                <!-- End of Content Wrapper -->
+                <!-- End of Page Wrapper -->
 
-            </div>
-            <!-- End of Page Wrapper -->
+                <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                    <i class="fas fa-angle-up"></i>
+                </a>
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
+                <!-- Logout Modal-->
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" href="login.html">Logout</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Bootstrap core JavaScript-->
+                <script src="vendor/jquery/jquery.min.js"></script>
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+                <!-- Custom scripts for all pages-->
+                <script src="js/sb-admin-2.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script>
+                <!-- Page level plugins -->
+                <script src="vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts -->
-            <script src="js/demo/chart-area-demo.js"></script>
-            <script src="js/demo/chart-pie-demo.js"></script>
+                <!-- Page level custom scripts -->
+                <script src="js/demo/chart-area-demo.js"></script>
+                <script src="js/demo/chart-pie-demo.js"></script>
 
     </body>
 
