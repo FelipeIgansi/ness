@@ -301,7 +301,7 @@
                         <h1 class="h3 mb-0 text-gray-800"> Adicionar conta</h1>
                     </div>
 
-                    <form method="post" action="#">
+                    <form method="post" action="inserirConta.php">
                         <div class="form-group">
                             <label for="inputName">Nome: </label>
                             <input type="text" class="form-control" id="inputName" name="nome" placeholder="Digite seu nome..." required>
@@ -322,9 +322,9 @@
                         </div>
                         <div class="form-group">
                             <label for="inputEstado">Tipo de conta:</label>
-                            <select id="inputTipoConta" class="form-control">
-                                <option id="optRedeSocial" value="redeSocial" selected>Rede social</option>
-                                <option id="optContaBanco" value="banc">Conta Bancaria</option>
+                            <select name="tipoConta" id="inputTipoConta" class="form-control">
+                                <option id="optRedeSocial" value="Rede social" selected>Rede social</option>
+                                <option id="optContaBanco" value="Conta bancaria">Conta Bancaria</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Criar conta</button>
