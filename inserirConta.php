@@ -33,6 +33,7 @@ function retornaIDFK($id){
     $stmt = $conn->prepare("INSERT INTO conta
     VALUES (DEFAULT, :NOME, :EMAIL, :SENHA, :'URL', :TIPOCONTA, :IDFK)");
 
+
     $id = "1";
     $result = retornaIDFK($id);
     $stmt -> bindParam(":NOME", $nome);
