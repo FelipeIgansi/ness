@@ -2,7 +2,7 @@
 
 
 function retornaIDFK($id){
-    $conn = new PDO("mysql:dbname=projetogestordesenhas;host=localhost", "root", "");
+    $conn = new PDO("mysql:dbname=projetogestordesenhas;host=localhost", "root", "123456");
     $valor = $conn->prepare("SELECT * FROM usuario WHERE idUsuario = $id");
     return  $valor;
 }
@@ -28,7 +28,7 @@ function retornaIDFK($id){
 
     echo ("banco de dados--------------------------- <br><br><br>");
 
-    $conn = new PDO("mysql:dbname=projetogestordesenhas;host=localhost", "root", "");
+    $conn = new PDO("mysql:dbname=projetogestordesenhas;host=localhost", "root", "123456");
     
     $stmt = $conn->prepare("INSERT INTO conta
     VALUES (DEFAULT, :NOME, :EMAIL, :SENHA, :'URL', :TIPOCONTA, :IDFK)");
