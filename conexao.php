@@ -1,11 +1,10 @@
 <?php
 
-class con{
-    public function conectar(){
-        return $conn = new PDO("mysql:dbname=projetogestordesenhas;host=localhost", "root", "123456");
-    }
+    define('HOST', '127.0.0.1');
+    define('USUARIO', 'root');
+    define('SENHA', "123456");
+    define('DB', 'projetogestordesenhas');
 
-}
-
+    $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die('Não foi possivel conectar.');
 
 ?>

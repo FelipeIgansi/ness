@@ -298,7 +298,7 @@
                         <!-- Content Row -->
                         <div class="row">
                             <?php
-
+                            include('conexao.php');
                             $nome = $_POST["nome"];
                             $email = $_POST["email"];
                             $senha = $_POST["senha"];
@@ -311,9 +311,9 @@
                                       </script>";
                             } else {
 
-                                $conn = new PDO("mysql:dbname=projetogestordesenhas;host=localhost", "root", "");
+                                
                                 echo "Senha: $senha (antes inserção)";
-                                $stmt = $conn->prepare("INSERT INTO usuario
+                                $stmt = $conexao->prepare("INSERT INTO usuario
                                                         VALUES (DEFAULT, :NOME, :EMAIL, :SENHA)");
 
                                 $stmt->bindParam(":NOME", $nome);

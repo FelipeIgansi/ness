@@ -259,9 +259,9 @@
             <li class="nav-item dropdown no-arrow">
               
             <?php
+                  include('conexao.php');
                   $nome = $_GET["nome"];
-                  $conn = new PDO("mysql:dbname=projetogestordesenhas;host=localhost", "root", "");
-                  $stmt = $conn->prepare("SELECT nome FROM usuario");
+                  $stmt = $conexao->prepare("SELECT nome FROM usuario");
                   echo "
                     <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                       <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
