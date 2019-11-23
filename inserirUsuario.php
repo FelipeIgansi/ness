@@ -304,7 +304,7 @@
                             $senha = $_POST["senha"];
                             $re_senha = $_POST["re-senha"];
                             echo "Senha: $senha (Declaração)";
-                            if ($senha =! $re_senha) {
+                            if ($senha != $re_senha) {
                                 echo "<script>
                                         alert('Senha Incorreta!');
                                         window.location.href='register.html';
