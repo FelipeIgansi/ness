@@ -252,39 +252,7 @@
                             </div>
                         </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-
-
-
-                        <!-- Nav Item - User Information -->
-
-                        <li class="nav-item dropdown no-arrow">
-
-
-
-
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configurações
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Sair
-                                </a>
-                            </div>
-                        </li>
+                        
 
                     </ul>
 
@@ -311,15 +279,15 @@
                             } else {
 
                                 
-                                $stmt = $conexao->prepare("INSERT INTO usuario VALUES (DEFAULT, :NOME, :EMAIL, md5(':SENHA'))");
-                                //$stmt = $conexao->prepare("INSERT INTO usuario VALUES (DEFAULT, $nome, $email, $senha)");
-
+                                //$stmt = $conexao->prepare("INSERT INTO usuario VALUES (DEFAULT, :NOME, :EMAIL, md5(':SENHA'))");
+                                $conexao->query("INSERT INTO 'projetogestordesenhas'.'usuario' VALUES (DEFAULT, $nome, $email, $senha)");
+                                /*
                                 $stmt->bindParam(":NOME", $nome);
                                 $stmt->bindParam(":EMAIL", $email);
                                 $stmt->bindParam(":SENHA", $senha);
-
-
-                                $stmt->execute();
+                                */
+                                //mysqli_stmt_execute($stmt);
+                                //$stmt->execute();
 
                                 echo "
                                     <form action='index.php' method='get'>
@@ -333,7 +301,8 @@
                                     </form>
                                 ";
                             }
-                            echo "Senha: $senha (fin)";
+                            echo "</div></dix>Senha: $senha (fim)";
+                            //mysqli_stmt_close($stmt);
                             ?>
 
                         </div>
