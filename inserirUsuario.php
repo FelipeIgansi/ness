@@ -299,12 +299,11 @@
                         <div class="row">
                             <?php
                             include('conexao.php');
-                            $nome = $_POST["nome"];
-                            $email = $_POST["email"];
-                            $senha = $_POST["senha"];
-                            $re_senha = $_POST["re-senha"];
-                            echo "Senha: $senha (Declaração)";
-                            if ($senha != $re_senha) {
+                            $nome = $_GET["nome"];
+                            $email = $_GET["email"];
+                            $senha = $_GET["senha"];
+                            $re_senha = $_GET["re-senha"];
+                            if ($senha <> $re_senha) {
                                 echo "<script>
                                         alert('Senha Incorreta!');
                                         window.location.href='register.html';
@@ -312,9 +311,8 @@
                             } else {
 
                                 
-                                echo "Senha: $senha (antes inserção)";
-                                $stmt = $conexao->prepare("INSERT INTO usuario
-                                                        VALUES (DEFAULT, :NOME, :EMAIL, :SENHA)");
+                                $stmt = $conexao->prepare("INSERT INTO usuario VALUES (DEFAULT, :NOME, :EMAIL, md5(':SENHA'))");
+                                //$stmt = $conexao->prepare("INSERT INTO usuario VALUES (DEFAULT, $nome, $email, $senha)");
 
                                 $stmt->bindParam(":NOME", $nome);
                                 $stmt->bindParam(":EMAIL", $email);
