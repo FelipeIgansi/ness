@@ -266,11 +266,12 @@
                         <!-- Content Row -->
                         <div class="row">
                             <?php
+                            session_start();
                             include('conexao.php');
-                            $nome = $_GET["nome"];
-                            $email = $_GET["email"];
-                            $senha = $_GET["senha"];
-                            $re_senha = $_GET["re-senha"];
+                            $nome =mysqli_real_escape_string($conexao, $_GET["nome"]);
+                            $email = mysqli_real_escape_string($conexao, $_GET["email"]);
+                            $senha = mysqli_real_escape_string($conexao, $_GET["senha"]);
+                            $re_senha = mysqli_escape_string($conexao, $_GET["re-senha"]);
                             if ($senha <> $re_senha) {
                                 echo "<script>
                                         alert('Senha Incorreta!');
@@ -280,7 +281,16 @@
 
                                 
                                 //$stmt = $conexao->prepare("INSERT INTO usuario VALUES (DEFAULT, :NOME, :EMAIL, md5(':SENHA'))");
-                                $conexao->query("INSERT INTO 'projetogestordesenhas'.'usuario' VALUES (DEFAULT, $nome, $email, $senha)");
+                                $sql = "INSERT INTO projetogestordesenhas.usuario VALUES (DEFAULT, $nome, $email, MD5('$senha'))";
+                                // echo "<pre>";
+                                // print_r($conexao);
+                                // echo "</pre>";
+                                // echo "<br><br><br>";
+                                    mysqli_query($conexao, $sql);
+                                mysqli_close($conexao);
+                                debug_print_backtrace();
+
+
                                 /*
                                 $stmt->bindParam(":NOME", $nome);
                                 $stmt->bindParam(":EMAIL", $email);
@@ -301,8 +311,6 @@
                                     </form>
                                 ";
                             }
-                            echo "</div></dix>Senha: $senha (fim)";
-                            //mysqli_stmt_close($stmt);
                             ?>
 
                         </div>
