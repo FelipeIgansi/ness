@@ -57,12 +57,12 @@
     // echo $usuario;  
 
     //------------------------------------------------------------------------
-
-    for ($i=7; $i <= 13; $i++) { 
-        $usuario = new Usuario();    
-        $usuario-> loadById($i);
-        $usuario-> delete();
-    }
+    // Deletar usuarios
+    // for ($i=7; $i <= 13; $i++) { 
+    //     $usuario = new Usuario();    
+    //     $usuario-> loadById($i);
+    //     $usuario-> delete();
+    // }
     
 
-    echo $usuario;
+    // echo $usuario;

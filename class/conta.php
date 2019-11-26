@@ -131,10 +131,15 @@ class Conta
         }
     }
 
-    public function __construct($nome = "", $senha = "")
+    public function __construct($nome = "", $email = "", $senha = "", $url = "", $tipoconta = "", $fk_idUsuario = "")
     {
         $this->setNomeConta($nome);
+        $this->setEmail($email);
         $this->setSenha($senha);
+        $this->setURL($url);
+        $this->setTipoConta($tipoconta);
+        $this->setFKIdUsuario($fk_idUsuario);
+        
     }
 
     public function insert()

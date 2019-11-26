@@ -107,9 +107,10 @@ class Usuario
         }
     }
 
-    public function __construct($nome = "", $senha = "")
+    public function __construct($nome = "", $email = "", $senha = "")
     {
         $this->setNome($nome);
+        $this->setEmail($email);
         $this->setSenha($senha);
     }
 

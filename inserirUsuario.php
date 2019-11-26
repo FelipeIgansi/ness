@@ -252,7 +252,7 @@
                             </div>
                         </li>
 
-                        
+
 
                     </ul>
 
@@ -266,12 +266,12 @@
                         <!-- Content Row -->
                         <div class="row">
                             <?php
-                            session_start();
-                            include('conexao.php');
-                            $nome =mysqli_real_escape_string($conexao, $_GET["nome"]);
-                            $email = mysqli_real_escape_string($conexao, $_GET["email"]);
-                            $senha = mysqli_real_escape_string($conexao, $_GET["senha"]);
-                            $re_senha = mysqli_escape_string($conexao, $_GET["re-senha"]);
+                            require_once('config.php');
+
+                            $nome =  $_GET["nome"];
+                            $email = $_GET["email"];
+                            $senha = $_GET["senha"];
+                            $re_senha = $_GET["re-senha"];
                             if ($senha <> $re_senha) {
                                 echo "<script>
                                         alert('Senha Incorreta!');
@@ -279,25 +279,24 @@
                                       </script>";
                             } else {
 
-                                
-                                //$stmt = $conexao->prepare("INSERT INTO usuario VALUES (DEFAULT, :NOME, :EMAIL, md5(':SENHA'))");
-                                $sql = "INSERT INTO projetogestordesenhas.usuario VALUES (DEFAULT, $nome, $email, MD5('$senha'))";
-                                // echo "<pre>";
-                                // print_r($conexao);
-                                // echo "</pre>";
-                                // echo "<br><br><br>";
-                                    mysqli_query($conexao, $sql);
-                                mysqli_close($conexao);
-                                debug_print_backtrace();
 
-
-                                /*
-                                $stmt->bindParam(":NOME", $nome);
-                                $stmt->bindParam(":EMAIL", $email);
-                                $stmt->bindParam(":SENHA", $senha);
-                                */
-                                //mysqli_stmt_execute($stmt);
-                                //$stmt->execute();
+                                echo  ("
+                                <strong>Nome:          </strong>$nome 
+                            <br><strong>E-Mail:        </strong> $email  
+                            <br><strong>Senha:         </strong>  $senha 
+                            <br><strong>URL:           </strong> $url 
+                            <br><strong>Tipo de conta: </strong> $tipoConta
+                            <br><strong>Id usuario: </strong> $fk_usuario <br> ");
+                        
+                            echo ("banco de dados--------------------------- <br><br><br>");
+                        
+                            $usuario = new Usuario($nome, $email, $senha);
+                        
+                            $usuario-> insert();
+                        
+                            echo "<pre>";
+                            echo $conta;
+                            echo "</pre>";
 
                                 echo "
                                     <form action='index.php' method='get'>
