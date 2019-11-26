@@ -309,6 +309,12 @@
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Adicionar Conta</a>
           </div>
 
+
+          <div>
+            <a class="btn btn-info" href="login.html">Login</a>
+            <a class="btn btn-info" href="register.html">Registrar</a>
+          </div>
+
           <!-- Content Row -->
           <div class="row">
 
