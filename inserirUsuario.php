@@ -61,19 +61,13 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configurações</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Aparencia</a>
-                        <a class="collapse-item" href="#">Sobreposição</a>
-                    </div>
-                </div>
             </li>
 
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -263,11 +257,11 @@
                                         window.location.href='register.html';
                                       </script>";
                             } else {
-                        
-                            $usuario = new Usuario($nome, $email, $senha);
-                        
-                            $usuario-> insert();
-                        
+
+                                $usuario = new Usuario($nome, $email, $senha);
+
+                                $usuario->insert();
+
 
                                 echo "
                                     <form action='index.php' method='get'>

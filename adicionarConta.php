@@ -61,20 +61,15 @@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
+
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configurações</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Botões</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
             </li>
 
-           
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -251,19 +246,28 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <?php
+
                             include('conexao.php');
-                            $nome = $_GET["nome"];
-                            $stmt = $conexao->prepare("SELECT nome FROM usuario");
-                            try {
+                            if (isset($_GET["nome"])) {
+                                $nome = $_GET["nome"];
+                                $stmt = $conexao->prepare("SELECT nome FROM usuario");
                                 echo "
                                 <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                                 <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
                                     <strong>$nome</strong>
                                 </span>
                                 </a>";
-                            } catch (Exception $e) {
-                                echo "Logue";
+                            } else {
+
+                                echo "
+                                <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                                    <strong>Entrar</strong>
+                                </span>
+                                </a>";
                             }
+
+
                             ?>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
