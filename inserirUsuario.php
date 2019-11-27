@@ -29,7 +29,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-key"></i>
                 </div>
@@ -278,25 +278,11 @@
                                         window.location.href='register.html';
                                       </script>";
                             } else {
-
-
-                                echo  ("
-                                <strong>Nome:          </strong>$nome 
-                            <br><strong>E-Mail:        </strong> $email  
-                            <br><strong>Senha:         </strong>  $senha 
-                            <br><strong>URL:           </strong> $url 
-                            <br><strong>Tipo de conta: </strong> $tipoConta
-                            <br><strong>Id usuario: </strong> $fk_usuario <br> ");
-                        
-                            echo ("banco de dados--------------------------- <br><br><br>");
                         
                             $usuario = new Usuario($nome, $email, $senha);
                         
                             $usuario-> insert();
                         
-                            echo "<pre>";
-                            echo $conta;
-                            echo "</pre>";
 
                                 echo "
                                     <form action='index.php' method='get'>

@@ -6,7 +6,7 @@ class Usuario
     private $nome;
     private $email;
     private $senha;
-    
+
 
     // Getters
 
@@ -57,8 +57,10 @@ class Usuario
     public function loadById($id)
     {
         $sql = new Sql();
-        $result = $sql->select("SELECT * FROM usuario where idUsuario = :ID", 
-        array(":ID" => $id));
+        $result = $sql->select(
+            "SELECT * FROM usuario where idUsuario = :ID",
+            array(":ID" => $id)
+        );
 
 
         if (count($result) > 0) {
@@ -118,7 +120,7 @@ class Usuario
     {
         $sql = new Sql();
         $result = $sql->select(
-            "CALL proc_usuarios_insert(:NOME, :EMAIL, encode(:PWD))",
+            "CALL proc_usuarios_insert(:NOME, :EMAIL, md5(:PWD))",
             array(
                 ':NOME' => $this->getNome(),
                 ':EMAIL' => $this->getEmail(),
@@ -155,15 +157,16 @@ class Usuario
     public function delete()
     {
         $sql = new Sql();
-        $sql-> query("DELETE from usuario WHERE id = :ID", 
-        array(
-            ':ID'=>$this->getID()
-        ));
-        $this-> setID(0);
-        $this-> setNome("");
-        $this-> setEmail("");
-        $this-> setSenha("");
-        
+        $sql->query(
+            "DELETE from usuario WHERE id = :ID",
+            array(
+                ':ID' => $this->getID()
+            )
+        );
+        $this->setID(0);
+        $this->setNome("");
+        $this->setEmail("");
+        $this->setSenha("");
     }
 
 
@@ -179,7 +182,7 @@ class Usuario
     {
         return json_encode(
             array(
-                "id" => $this->getID(),
+
                 "nome" => $this->getNome(),
                 "email" => $this->getEmail(),
                 "senha" => $this->getSenha(),
