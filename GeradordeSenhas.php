@@ -20,7 +20,8 @@
 </head>
 
 <body>
-<?php error_reporting(0); ?>
+    <?php error_reporting(0); ?>
+
     <body id="page-top">
 
         <!-- Page Wrapper -->
@@ -70,22 +71,6 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="buttons.html">Botões</a>
                             <a class="collapse-item" href="cards.html">Cards</a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - Utilities Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fas fa-fw fa-wrench"></i>
-                        <span>Serviços</span>
-                    </a>
-                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="utilities-color.html">Colors</a>
-                            <a class="collapse-item" href="utilities-border.html">Borders</a>
-                            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                            <a class="collapse-item" href="utilities-other.html">Other</a>
                         </div>
                     </div>
                 </li>
@@ -265,10 +250,25 @@
 
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-                                </a>
+
+
+                                <?php
+                                include('conexao.php');
+                                $nome = $_GET["nome"];
+                                $stmt = $conexao->prepare("SELECT nome FROM usuario");
+                                try {
+                                    echo "
+                                    <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                    <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                                        <strong>$nome</strong>
+                                    </span>
+                                    </a>";
+                                } catch (Exception $e) {
+                                    echo "Logue";
+                                }
+                                ?>
+
+
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="#">
@@ -376,7 +376,7 @@
 
                                     <div class="col-auto my-1">
                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="carac" id="caracespeciais_check" value="true"> 
+                                            <input type="checkbox" class="custom-control-input" name="carac" id="caracespeciais_check" value="true">
                                             <label class="custom-control-label" for="caracespeciais_check">Caracteres Especiais</label>
                                         </div>
                                     </div>
@@ -387,13 +387,13 @@
                             <textarea style="text-align: center;" class="form-control" id="exampleFormControlTextarea1" rows="10" readonly>
                                     <?php
 
-                                        $digitos = $_POST["digi"];
-                                        $num = $_POST["num"];
-                                        $maius = $_POST["maius"];
-                                        $minus = $_POST["minus"];
-                                        $caracEsp = $_POST["carac"];
-                                        echo htmlspecialchars(gerar_senha($digitos, $num, $maius, $minus, $caracEsp));
-                                        
+                                    $digitos = $_POST["digi"];
+                                    $num = $_POST["num"];
+                                    $maius = $_POST["maius"];
+                                    $minus = $_POST["minus"];
+                                    $caracEsp = $_POST["carac"];
+                                    echo htmlspecialchars(gerar_senha($digitos, $num, $maius, $minus, $caracEsp));
+
                                     ?>
                                 </textarea>
 

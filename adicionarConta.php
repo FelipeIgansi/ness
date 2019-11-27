@@ -74,22 +74,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Serviços</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
+           
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -105,7 +90,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content"  style="background-color: white;">
+            <div id="content" style="background-color: white;">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -265,10 +250,21 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-                            </a>
+                            <?php
+                            include('conexao.php');
+                            $nome = $_GET["nome"];
+                            $stmt = $conexao->prepare("SELECT nome FROM usuario");
+                            try {
+                                echo "
+                                <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                                    <strong>$nome</strong>
+                                </span>
+                                </a>";
+                            } catch (Exception $e) {
+                                echo "Logue";
+                            }
+                            ?>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
@@ -299,17 +295,17 @@
 
                     <form method="post" action="inserirConta.php">
                         <div class="form-group">
-                            <label for="inputName">Nome: </label>
+                            <label for="inputName">Nome/Usuario: </label>
                             <input type="text" class="form-control" id="inputName" name="nome" placeholder="Digite seu nome..." required>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">E-mail: </label>
-                                <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="E-mail" required>
+                                <input type="email" class="form-control" id="inputEmail" name="email" placeholder="E-mail" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Senha: </label>
-                                <input type="password" class="form-control" id="inputPassword4" name="senha" placeholder="Senha" required>
+                                <input type="password" class="form-control" id="inputPassword" name="senha" placeholder="Senha" required>
                             </div>
                         </div>
                         <div class="form-group">
