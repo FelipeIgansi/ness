@@ -258,7 +258,7 @@
                                       </script>";
                             } else {
 
-                                $usuario = new Usuario($nome, $email, $senha);
+                                $usuario = new Usuario(uniqid(rand(), true),$nome, $email, $senha);
 
                                 $usuario->insert();
 

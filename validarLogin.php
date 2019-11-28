@@ -1,23 +1,16 @@
 <?php
 
-    include('conexao.php');
-
+    require_once('config.php');
+    $sql = new Sql();
     if (empty($_GET["nome"]) || empty($_GET["senha"])){
 
         header('Location: login.html');
         exit();
     }
+    else{
 
-    $usuario = mysqli_real_escape_string($conexao, $_GET['nome']);
-    $senha = mysqli_real_escape_string($conexao, $_GET['senha']);
+    $senha = $_GET['senha'];
 
-    $query = "select * from usuario where nome = {$usuario} and senha = md5('{$senha}')";
-    $result = mysqli_query($conexao, $query);
-    echo $result;
-
-    $arrayResultados = mysqli_fetch_assoc($result);
-    $nLinhas = count($arrayResultados);
-
-
-    echo $row;exit;
-?>
+    $usuario = new validaUsuario();
+    $usuario-> login($_GET['nome'], md5("$senha"));
+}

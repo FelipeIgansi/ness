@@ -109,13 +109,7 @@ class Usuario
         }
     }
 
-    public function __construct($id = null, $nome = "", $email = "", $senha = "")
-    {
-        $this->setID($id);
-        $this->setNome($nome);
-        $this->setEmail($email);
-        $this->setSenha($senha);
-    }
+
 
     public function insert()
     {
