@@ -21,7 +21,10 @@
 </head>
 
 <body id="page-top">
+<?PHP 
+session_start();
 
+?>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -238,21 +241,13 @@
 
               <?php
 
-              include('conexao.php');
-              if (isset($_GET["nome"])) {
-                $nome = $_GET["nome"];
-                $stmt = $conexao->prepare("SELECT nome FROM usuario");
                 echo "
                   <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                     <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                      <strong>$nome</strong>
+                      <strong>",$_SESSION['Usuario'],"</strong>
                     </span>
                   </a>";
-              } else {
-                echo "<script>
-                         window.location.href='login.html';
-                      </script>";
-              }
+              
 
 
               ?>
