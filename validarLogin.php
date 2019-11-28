@@ -9,6 +9,8 @@
     }
     else{
 
+        
+
     $senha = $_GET['senha'];
 
     $usuario = new validaLoginClass();

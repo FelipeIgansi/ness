@@ -14,9 +14,6 @@ class validaLoginClass
     {
         return $this->nome;
     }
-
-
-
     public function getSenha()
     {
         return $this->senha;
@@ -29,13 +26,10 @@ class validaLoginClass
     {
         $this->nome = $value;
     }
-
-
     public function setSenha($value)
     {
         $this->senha = $value;
     }
-
     public function login($login, $pwd)
     {
         $sql = new Sql();
@@ -53,10 +47,10 @@ class validaLoginClass
             $this->setData($result[0]);
         } else {
 
-            throw new Exception("Login e/ou senha invalidos!");
+            header('Location: login.html');
+            exit();
         }
     }
-
     public function setData($data)
     {
         $this->setNome($data['nome']);
