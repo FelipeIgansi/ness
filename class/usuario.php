@@ -52,7 +52,20 @@ class Usuario
         $this->senha = $value;
     }
 
+    public function loadIdByName($nome)
+    {
+        $sql = new Sql();
+        $result = $sql->select(
+            "SELECT idUsuario FROM usuario where nomeUsuario = :NOME",
+            array(":NOME" => $nome)
+        );
+        return $result;
 
+        if (count($result) > 0) {
+
+            $this->setData($result[0]);
+        }
+    }
 
     public function loadById($id)
     {
@@ -81,8 +94,8 @@ class Usuario
     {
         $sql = new Sql();
 
-        return $sql->select("SELECT * FROM usuario where nome like :SEARCH 
-        ORDER BY nome ", array(
+        return $sql->select("SELECT * FROM usuario where nomeUsuario like :SEARCH 
+        ORDER BY nomeUsuario ", array(
             ':SEARCH' => "%" . $login . "%"
 
         ));
@@ -92,7 +105,7 @@ class Usuario
     {
         $sql = new Sql();
         $result = $sql->select(
-            "SELECT * FROM usuario WHERE nome = :NOME AND senha = :PWD",
+            "SELECT * FROM usuario WHERE nomeUsuario = :NOME AND senha = :PWD",
             array(
                 ":NOME" => $login,
                 ":PWD" => $pwd
@@ -109,9 +122,8 @@ class Usuario
         }
     }
 
-    public function __construct($id = null, $nome = "", $email = "", $senha = "")
+    public function __construct($nome = "", $email = "", $senha = "")
     {
-        $this->setID($id);
         $this->setNome($nome);
         $this->setEmail($email);
         $this->setSenha($senha);
@@ -121,9 +133,8 @@ class Usuario
     {
         $sql = new Sql();
         $result = $sql->select(
-            "CALL proc_usuarios_insert(:ID, :NOME, :EMAIL, md5(:PWD))",
+            "CALL proc_usuarios_insert(:NOME, :EMAIL, md5(:PWD))",
             array(
-                ':ID' => $this->getID(),
                 ':NOME' => $this->getNome(),
                 ':EMAIL' => $this->getEmail(),
                 ':PWD' => $this->getSenha()
@@ -144,7 +155,7 @@ class Usuario
         $sql = new Sql();
 
         $sql->query(
-            "UPDATE usuario SET nome = :NOME, email = :EMAIL, senha = md5(:SENHA) 
+            "UPDATE usuario SET nomeUsuario = :NOME, email = :EMAIL, senha = md5(:SENHA) 
             where idUsuario = :ID",
             array(
                 ':NOME' => $this->getNome(),
@@ -160,7 +171,7 @@ class Usuario
     {
         $sql = new Sql();
         $sql->query(
-            "DELETE from usuario WHERE id = :ID",
+            "DELETE from usuario WHERE idUsuario = :ID",
             array(
                 ':ID' => $this->getID()
             )
@@ -174,7 +185,6 @@ class Usuario
 
     public function setData($data)
     {
-        $this->setID($data['id']);
         $this->setNome($data['nome']);
         $this->setEmail($data['email']);
         $this->setSenha($data['senha']);

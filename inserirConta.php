@@ -1,12 +1,12 @@
 <?php
     require_once('config.php');
 
-    $nome = $_POST["nome"];
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
-    $url = $_POST["url"];
-    $tipoConta = $_POST["tipoConta"];
-    $fk_usuario = $_POST["fk_usuario"];
+    $nome = $_GET["nome"];
+    $email = $_GET["email"];
+    $senha = $_GET["senha"];
+    $url = $_GET["url"];
+    $tipoConta = $_GET["tipoConta"];
+    $fk_usuario = $_GET["fk_usuario"];
 
     echo  ("
         <strong>Nome:          </strong>$nome 
@@ -18,12 +18,12 @@
 
     echo ("banco de dados--------------------------- <br><br><br>");
 
-    $conta = new Conta($nome, $email, $senha, $url, $tipoConta, $fk_usuario);
+    $conta = new Conta($nome, $email, md5("$senha"), $url, $tipoConta, $fk_usuario);
 
     $conta-> insert();
 
     echo "<pre>";
-    echo $conta;
+    print_r($conta);
     echo "</pre>";
     
 

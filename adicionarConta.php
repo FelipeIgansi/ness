@@ -21,7 +21,7 @@
 
 
 <body id="page-top">
-    <?php error_reporting(0); ?>
+    <?php error_reporting(0); session_start();?>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -248,13 +248,16 @@
                             <?php
 
                             include('conexao.php');
-                            if (isset($_GET["nome"])) {
-                                $nome = $_GET["nome"];
-                                $stmt = $conexao->prepare("SELECT nome FROM usuario");
+                            require_once('config.php');
+
+                            $usuario = new Usuario();
+                            $nome = $_GET["nome"];
+
+                            if (isset($_SESSION['Usuario'])){
                                 echo "
                                 <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                                 <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                                    <strong>$nome</strong>
+                                    <strong>",$_SESSION['Usuario'],"</strong>
                                 </span>
                                 </a>";
                             } else {
@@ -297,7 +300,7 @@
                         <h1 class="h3 mb-0 text-gray-800"> Adicionar conta</h1>
                     </div>
 
-                    <form method="post" action="inserirConta.php">
+                    <form method="get" action="inserirConta.php">
                         <div class="form-group">
                             <label for="inputName">Nome/Usuario: </label>
                             <input type="text" class="form-control" id="inputName" name="nome" placeholder="Digite seu nome..." required>

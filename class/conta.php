@@ -146,7 +146,7 @@ class Conta
     {
         $sql = new Sql();
         $result = $sql->select(
-            "CALL proc_contas_insert(:NOME, :EMAIL, encode(:PWD), :URL, :TIPOCONTA, :FK_USUARIO)",
+            "CALL proc_contas_insert(:NOME, :EMAIL, :PWD, :URL, :TIPOCONTA, :FK_USUARIO)",
             array(
                 ':NOME' => $this->getNomeConta(),
                 ':EMAIL' => $this->getEmail(),

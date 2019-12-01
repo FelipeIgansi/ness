@@ -21,7 +21,7 @@
 </head>
 
 <body id="page-top">
-
+    <?php session_start(); error_reporting(0);?>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -245,36 +245,38 @@
                         <!-- Content Row -->
                         <div class="row">
                             <?php
-                            require_once('config.php');
+                                require_once('config.php');
+                                
+                                $nome =  $_GET["nome"];
+                                $email = $_GET["email"];
+                                $senha = $_GET["senha"];
+                                $re_senha = $_GET["re-senha"];
+                                if ($senha <> $re_senha) {
+                                    echo "<script>
+                                            alert('Senha Incorreta!');
+                                            window.location.href='register.html';
+                                        </script>";
+                                } else {
 
-                            $nome =  $_GET["nome"];
-                            $email = $_GET["email"];
-                            $senha = $_GET["senha"];
-                            $re_senha = $_GET["re-senha"];
-                            if ($senha <> $re_senha) {
-                                echo "<script>
-                                        alert('Senha Incorreta!');
-                                        window.location.href='register.html';
-                                      </script>";
-                            } else {
+                                    //$id = uniqid(rand(), true);
+                                    $_SESSION['Usuario'] = $nome;
+                                        $usuario = new Usuario($nome, $email, $senha);
 
-                                $usuario = new Usuario(uniqid(rand(), true),$nome, $email, $senha);
-
-                                $usuario->insert();
+                                    $usuario->insert();
 
 
-                                echo "
-                                    <form action='index.php' method='get'>
-                                                <input type='hidden' name='nome' value='$nome'>
-                                                <input type='hidden' name='email' value='$email'>
-                                                <input type='hidden' name='senha' value='$senha'>
-                                                <h2>Pronto agora você está logado </h2>
-                                                <p>Para ir para o menu principal clique no botão a baixo!</p>
-                                                <button class='btn btn-info'>Voltar para home</button>
-                                                <br/><br/><br/>
-                                    </form>
-                                ";
-                            }
+                                    echo "
+                                        <form action='index.php' method='get'>
+                                                    <input type='hidden' name='nome' value='$nome'>
+                                                    <input type='hidden' name='email' value='$email'>
+                                                    <input type='hidden' name='senha' value='$senha'>
+                                                    <h2>Pronto agora você está logado </h2>
+                                                    <p>Para ir para o menu principal clique no botão a baixo!</p>
+                                                    <button class='btn btn-info'>Voltar para home</button>
+                                                    <br/><br/><br/>
+                                        </form>
+                                    ";
+                                }
                             ?>
 
                         </div>

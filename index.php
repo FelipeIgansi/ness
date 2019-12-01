@@ -292,8 +292,14 @@ session_start();
 
           <!-- Content Row -->
           <div class="row">
+              
 
-
+          <?PHP
+          
+              $usuario = new Usuario($_GET['nome'], $_GET['email'], $_GET['senha']);
+              $conta = new Conta();
+          
+          ?>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
