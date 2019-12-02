@@ -1,6 +1,6 @@
 <?php
 
-class Conta
+class ClassConta
 {
     private $id;
     private $nome;
@@ -79,6 +79,21 @@ class Conta
         $this->fk_idUsuario = $value;
     }
 
+
+    public function loadParamByName($param = "", $nome = "")
+    {
+        $sql = new Sql();
+        $result = $sql->select(
+            "SELECT $param FROM usuario where nomeUsuario = :NOME",
+            array(":NOME" => $nome)
+        );
+        
+
+        if (count($result) > 0) {
+
+            $this->setData($result[0]);
+        }
+    }
 
     public function loadById($id)
     {

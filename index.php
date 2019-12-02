@@ -16,15 +16,15 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
-<?PHP 
-session_start();
+  <?PHP
+  session_start();
 
-?>
+  ?>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -67,7 +67,7 @@ session_start();
         <a class="nav-link collapsed" href="#" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Configurações</span>
-        </a>       
+        </a>
       </li>
 
       <!-- Divider -->
@@ -233,23 +233,21 @@ session_start();
               </div>
             </li>
 
-            <div  class="topbar-divider d-none d-sm-block"></div>
+            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
 
             <li class="nav-item dropdown no-arrow">
 
               <?php
-              if (isset($_SESSION['Usuario'])){
+              if (isset($_SESSION['Usuario'])) {
                 echo "
                   <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                     <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                      <strong>",$_SESSION['Usuario'],"</strong>
+                      <strong>", $_SESSION['Usuario'], "</strong>
                     </span>
                   </a>";
-              
-              }
-              else{
+              } else {
 
                 header('Location: login.html');
                 exit();
@@ -284,6 +282,58 @@ session_start();
             <a href="adicionarConta.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Adicionar Conta</a>
           </div>
 
+          <div>
+            <?PHP
+            require_once('config.php');
+            include('conexao.php');
+            $sql = new Sql();
+            $senha = $_GET['senha'];
+            $usuario = new Usuario();
+            //echo $usuario->loadById(1);
+            $usu01 = $usuario->loadById(1);
+            $usu02 = $usuario->loadById(2);
+            $usu03 = $usuario->loadById(7);
+
+            $listaIds = Usuario::getListIds();
+            // echo "<pre>";
+            // print_r($usu);
+            // echo "</pre><br>";
+
+
+            ?>
+
+            <table class="table">
+              <thead class="thead-blue">
+                <tr>
+                  <th scope="col">Nome/Usuario</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Senha</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <?php foreach ($listaIds as $usu01) {
+                  $usu01 = $usuario->loadById($usu01['idUsuario']);
+
+                  ?>
+                  <?php foreach ($usu01 as $item) { ?>
+                    <tr>
+                      <td> <?PHP echo $item['nomeUsuario'] ?> </td>
+                      <td> <?PHP echo $item['email'] ?> </td>
+                      <td> <?PHP echo $item['senha'] ?> </td>
+                    </tr>
+                  <?php } ?>
+
+
+                <?php } ?>
+                
+
+              </tbody>
+            </table>
+
+
+          </div>
 
           <div>
             <a class="btn btn-info" href="login.html">Login</a>
@@ -292,14 +342,8 @@ session_start();
 
           <!-- Content Row -->
           <div class="row">
-              
 
-          <?PHP
-          
-              $usuario = new Usuario($_GET['nome'], $_GET['email'], $_GET['senha']);
-              $conta = new Conta();
-          
-          ?>
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

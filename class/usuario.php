@@ -75,7 +75,7 @@ class Usuario
             array(":ID" => $id)
         );
 
-
+        return $result;
         if (count($result) > 0) {
 
             $this->setData($result[0]);
@@ -88,6 +88,13 @@ class Usuario
         $sql = new Sql();
 
         return $sql->select("SELECT * FROM usuario ORDER BY idUsuario;");
+    }
+
+    public static function getListIds()
+    {
+        $sql = new Sql();
+
+        return $sql->select("SELECT idUsuario FROM usuario ORDER BY idUsuario;");
     }
 
     public static function search($login)
@@ -185,7 +192,8 @@ class Usuario
 
     public function setData($data)
     {
-        $this->setNome($data['nome']);
+        $this->setID($data['idUsuario']);
+        $this->setNome($data['nomeUsuario']);
         $this->setEmail($data['email']);
         $this->setSenha($data['senha']);
     }
@@ -194,7 +202,7 @@ class Usuario
     {
         return json_encode(
             array(
-
+                "id"=> $this->getID(),
                 "nome" => $this->getNome(),
                 "email" => $this->getEmail(),
                 "senha" => $this->getSenha(),

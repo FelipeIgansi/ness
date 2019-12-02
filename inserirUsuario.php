@@ -260,7 +260,7 @@
 
                                     //$id = uniqid(rand(), true);
                                     $_SESSION['Usuario'] = $nome;
-                                        $usuario = new Usuario($nome, $email, $senha);
+                                    $usuario = new Usuario($nome, $email, $senha);
 
                                     $usuario->insert();
 
