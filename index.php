@@ -287,7 +287,7 @@
             require_once('config.php');
             include('conexao.php');
             $sql = new Sql();
-            $senha = $_GET['senha'];
+            //$senha = $_GET['senha'];
             $usuario = new Usuario();
             //echo $usuario->loadById(1);
             $usu01 = $usuario->loadById(1);
@@ -304,7 +304,7 @@
 
             <table class="table">
               <thead class="thead-blue">
-                <tr>
+                <tr id="colCabecalho">
                   <th scope="col">Nome/Usuario</th>
                   <th scope="col">E-mail</th>
                   <th scope="col">Senha</th>
