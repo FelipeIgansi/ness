@@ -34,7 +34,7 @@ class validaLoginClass
     {
         $sql = new Sql();
         $result = $sql->select(
-            "SELECT * FROM usuario WHERE nome = :NOME AND senha = :PWD",
+            "SELECT * FROM usuario WHERE nomeUsuario = :NOME AND senha = :PWD",
             array(
                 ":NOME" => $login,
                 ":PWD" => $pwd
@@ -53,7 +53,7 @@ class validaLoginClass
     }
     public function setData($data)
     {
-        $this->setNome($data['nome']);
+        $this->setNome($data['nomeUsuario']);
         $this->setSenha($data['senha']);
     }
 }
