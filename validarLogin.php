@@ -1,24 +1,24 @@
 <?php
-    session_start();
-    require_once('config.php');
-    $sql = new Sql();
-    if (empty($_GET["nome"]) || empty($_GET["senha"])){
+    // session_start();
+    // require_once('config.php');
+    // $sql = new Sql();
+    // if (empty($_GET["nome"]) || empty($_GET["senha"])){
 
-        header('location: login.html');
-        exit();
+    //     header('location: login.html');
+    //     exit();
 
-    }
-    else{
+    // }
+    // else{
 
         
 
-    $senha = $_GET['senha'];
+    // $senha = $_GET['senha'];
 
-    $usuario = new validaLoginClass();
-    $usuario-> login( $_GET['nome'], md5("$senha"));
-    $nome = $_GET['nome'];
+    // $usuario = new validaLoginClass();
+    // $usuario-> login( $_GET['nome'], md5("$senha"));
+    // $nome = $_GET['nome'];
     
-    $_SESSION['Usuario'] = $nome;
-    header('location: index.php');
-    }
+    // $_SESSION['Usuario'] = $nome;
+    // header('location: index.php');
+    // }
 ?>
