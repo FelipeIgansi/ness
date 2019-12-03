@@ -4,10 +4,8 @@
     $sql = new Sql();
     if (empty($_GET["nome"]) || empty($_GET["senha"])){
 
-        echo "<script>
-                alert('Senhas não são iguais!');
-              </script>";
         header('location: login.html');
+        exit();
 
     }
     else{
