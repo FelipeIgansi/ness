@@ -12,6 +12,7 @@ class ClassConta
 
     // Getters
 
+    
     public function getIdConta()
     {
         return $this->id;
@@ -84,7 +85,7 @@ class ClassConta
     {
         $sql = new Sql();
         $result = $sql->select(
-            "SELECT $param FROM usuario where nomeUsuario = :NOME",
+            "SELECT $param FROM conta where nomeConta = :NOME",
             array(":NOME" => $nome)
         );
         
@@ -94,6 +95,14 @@ class ClassConta
             $this->setData($result[0]);
         }
     }
+    
+    public static function getListIds()
+    {
+        $sql = new Sql();
+
+        return $sql->select("SELECT idConta FROM conta ORDER BY idConta;");
+    }
+
 
     public function loadById($id)
     {
@@ -189,7 +198,7 @@ class ClassConta
         $sql = new Sql();
 
         $sql->query(
-            "UPDATE conta SET nomeConta = :NOME, email = :EMAIL, senha = enconde(:SENHA), 
+            "UPDATE conta SET nomeConta = :NOME, email = :EMAIL, senha = md5(':SENHA'), 
                 url = :URL, tipoConta = :TIPOCONTA, Usuario_idUsuario = :FK_USUARIO  
             where idConta = :ID",
             array(
@@ -220,8 +229,8 @@ class ClassConta
 
     public function setData($data)
     {
-        $this->setIdConta($data['id']);
-        $this->setNomeConta($data['nome']);
+        $this->setIdConta($data['idConta']);
+        $this->setNomeConta($data['nomeConta']);
         $this->setSenha($data['senha']);
     }
     // Mostrar as informações
@@ -229,8 +238,8 @@ class ClassConta
     {
         return json_encode(
             array(
-                "id" => $this->getIdConta(),
-                "nome" => $this->getNomeConta(),
+                "idConta" => $this->getIdConta(),
+                "nomeConta" => $this->getNomeConta(),
                 "email" => $this->getEmail(),
                 "senha" => $this->getSenha(),
                 "url" => $this->getURL(),

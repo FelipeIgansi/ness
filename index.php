@@ -292,16 +292,23 @@
             include('conexao.php');
             $sql = new Sql();
             //$senha = $_GET['senha'];
-            $usuario = new Usuario();
-            //echo $usuario->loadById(1);
-            $usu01 = $usuario->loadById(1);
-            $usu02 = $usuario->loadById(2);
-            $usu03 = $usuario->loadById(7);
+            $conta = new ClassConta();
+            $usu =  $_SESSION['Usuario'];
 
-            $listaIds = Usuario::getListIds();
-            // echo "<pre>";
-            // print_r($usu);
-            // echo "</pre><br>";
+            $usuario = new Usuario();
+
+            $fkUsuario = $usuario->loadIdByName($usu);
+
+            //echo $fkUsuario['idUsuario'];
+
+            // forma de mostrar o valor de um array
+            foreach ($fkUsuario as $key) {
+              echo $key['idUsuario'];
+            }
+
+
+            $listaIds = ClassConta::getListIds();
+
 
 
             ?>
@@ -309,29 +316,38 @@
             <table class="table">
               <thead class="thead-blue">
                 <tr id="colCabecalho">
-                  <th scope="col">Nome/Usuario</th>
-                  <th scope="col">E-mail</th>
+                  <th scope="col">id</th>
+                  <th scope="col">Conta</th>
+                  <th scope="col">E-mail usado</th>
                   <th scope="col">Senha</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Tipo de conta</th>
+                  <!-- <th scope="col">Usuario</th> -->
+
 
                 </tr>
               </thead>
               <tbody>
 
-                <?php foreach ($listaIds as $usu01) {
-                  $usu01 = $usuario->loadById($usu01['idUsuario']);
-
+                <?php foreach ($listaIds as $con) {
+                  $con = $conta->loadById($con['idConta']);
+                  echo $con;
                   ?>
-                  <?php foreach ($usu01 as $item) { ?>
+                  <?php foreach ($con as $item) { ?>
                     <tr>
-                      <td> <?PHP echo $item['nomeUsuario'] ?> </td>
+                      <td> <?PHP echo $item['idConta'] ?> </td>
+                      <td> <?PHP echo $item['nomeConta'] ?> </td>
                       <td> <?PHP echo $item['email'] ?> </td>
                       <td> <?PHP echo $item['senha'] ?> </td>
+                      <td> <?PHP echo $item['url'] ?> </td>
+                      <td> <?PHP echo $item['tipoConta'] ?> </td>
+
                     </tr>
                   <?php } ?>
 
 
                 <?php } ?>
-                
+
 
               </tbody>
             </table>
@@ -384,7 +400,7 @@
               <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                 <a class="btn btn-primary" href="login.html">Sair</a>
-                <?php  session_destroy();?>
+                <?php session_destroy(); ?>
               </div>
             </div>
           </div>

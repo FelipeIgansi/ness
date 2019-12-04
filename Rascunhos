@@ -1,0 +1,48 @@
+// Trecho decodigo retirado de index para testar a utilização da tabela contas
+
+<div>
+            <?PHP
+            require_once('config.php');
+            include('conexao.php');
+            $sql = new Sql();
+            //$senha = $_GET['senha'];
+            $usuario = new Usuario();
+            
+
+            $listaIds = Usuario::getListIds();
+            
+
+            ?>
+
+            <table class="table">
+              <thead class="thead-blue">
+                <tr id="colCabecalho">
+                  <th scope="col">Nome/Usuario</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Senha</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <?php foreach ($listaIds as $usu) {
+                  $usu = $usuario->loadById($usu['idUsuario']);
+
+                  ?>
+                  <?php foreach ($usu as $item) { ?>
+                    <tr>
+                      <td> <?PHP echo $item['nomeUsuario'] ?> </td>
+                      <td> <?PHP echo $item['email'] ?> </td>
+                      <td> <?PHP echo $item['senha'] ?> </td>
+                    </tr>
+                  <?php } ?>
+
+
+                <?php } ?>
+                
+
+              </tbody>
+            </table>
+
+
+          </div>
