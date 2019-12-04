@@ -302,21 +302,21 @@
             //echo $fkUsuario['idUsuario'];
 
             // forma de mostrar o valor de um array
-            foreach ($fkUsuario as $key) {
-              echo $key['idUsuario'];
-            }
+            // foreach ($fkUsuario as $key) {
+            //   echo $key['idUsuario'];
+            // }
 
 
             $listaIds = ClassConta::getListIds();
 
-
+            error_reporting(0);
 
             ?>
 
             <table class="table">
               <thead class="thead-blue">
                 <tr id="colCabecalho">
-                  <th scope="col">id</th>
+                  <!-- <th scope="col">id</th> -->
                   <th scope="col">Conta</th>
                   <th scope="col">E-mail usado</th>
                   <th scope="col">Senha</th>
@@ -356,8 +356,8 @@
           </div>
 
           <div>
-            <a class="btn btn-info" href="login.html">Login</a>
-            <a class="btn btn-info" href="register.html">Registrar</a>
+            <!-- <a class="btn btn-info" href="login.html">Login</a>
+            <a class="btn btn-info" href="register.html">Registrar</a> -->
           </div>
 
           <!-- Content Row -->
