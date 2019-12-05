@@ -297,14 +297,30 @@
 
             $usuario = new Usuario();
 
-            $fkUsuario = $usuario->loadIdByName($usu);
+            $pesquisa = new Busca();
 
-            //echo $fkUsuario['idUsuario'];
+            
 
-            // forma de mostrar o valor de um array
-            // foreach ($fkUsuario as $key) {
-            //   echo $key['idUsuario'];
-            // }
+            $ListafkUsuario = $usuario->loadIdByName($usu);
+
+            //forma de mostrar o valor de um array
+            foreach ($ListafkUsuario as $value) {
+
+              $fkUsuario = $value ['idUsuario'];
+            }
+            echo "FK do usuario:  ",$fkUsuario;
+
+            $ListaidsContas =  $pesquisa->loadColByParam
+            ($fkUsuario) 
+            or die ("Conta não está associada ao usuario!");
+
+            foreach ($ListaidsContas as $value) {
+
+              $IdContas = $value ['idConta'];
+            }
+
+            print_r("Lista de IDs com contas associadas ao usuario:  ",$ListaidsContas);
+
 
 
             $listaIds = ClassConta::getListIds();
