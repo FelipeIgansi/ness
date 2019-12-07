@@ -253,11 +253,11 @@
                             $usuario = new Usuario();
                             $nome = $_GET["nome"];
 
-                            if (isset($_SESSION['Usuario'])){
+                            if (isset($_SESSION['usuario'])){
                                 echo "
                                 <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                                 <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                                    <strong>",$_SESSION['Usuario'],"</strong>
+                                    <strong>",$_SESSION['usuario'],"</strong>
                                 </span>
                                 </a>";
                             } else {

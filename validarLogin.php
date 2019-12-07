@@ -9,16 +9,14 @@
 
     }
     else{
-
         
-
         $senha = $_GET['senha'];
 
         $usuario = new validaLoginClass();
         $usuario-> login( $_GET['nome'], md5("$senha"));
         $nome = $_GET['nome'];
         
-        $_SESSION['Usuario'] = $nome;
+        $_SESSION['usuario'] = $nome;
         header('location: index.php');
     }
 ?>

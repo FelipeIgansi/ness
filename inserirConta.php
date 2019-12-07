@@ -18,7 +18,7 @@
 
     echo ("banco de dados--------------------------- <br><br><br>");
 
-    $conta = new Conta($nome, $email, md5("$senha"), $url, $tipoConta, $fk_usuario);
+    $conta = new ClassConta($nome, $email, md5("$senha"), $url, $tipoConta, $fk_usuario);
 
     $conta-> insert();
 

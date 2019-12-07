@@ -1,3 +1,11 @@
+<?PHP
+  error_reporting(0);
+  session_start();
+  $nome_sessão =  $_SESSION['usuario'];
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,10 +29,7 @@
 </head>
 
 <body id="page-top">
-  <?PHP
-  session_start();
 
-  ?>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -238,26 +243,24 @@
             <!-- Nav Item - User Information -->
 
             <li class="nav-item dropdown no-arrow">
-
+              
               <?php
-              if (isset($_SESSION['Usuario']) ==  true) {
+              if ($nome_sessão) {
                 echo "
-                  <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                  <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
                     <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                      <strong>", $_SESSION['Usuario'], "</strong>
+                      <strong>", $nome_sessão, "</strong>
                     </span>
                   </a>";
-              } else {
-
-                echo "<script>
-                          alert('Sessão inexistente!');
-                          window.location.href='login.html';
-
-                      </script>";
-                exit();
+              } 
+               if($nome_sessão == "") {
+                
+                echo "<br><a style='color:black;' href='login.html'>Entrar</a>";
+                
               }
 
               ?>
+              
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -293,7 +296,7 @@
             $sql = new Sql();
             //$senha = $_GET['senha'];
             $conta = new ClassConta();
-            $usu =  $_SESSION['Usuario'];
+            $usu =  $_SESSION['usuario'];
 
             $usuario = new Usuario();
 

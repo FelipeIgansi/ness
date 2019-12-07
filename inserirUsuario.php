@@ -259,7 +259,7 @@
                                 } else {
 
                                     //$id = uniqid(rand(), true);
-                                    $_SESSION['Usuario'] = $nome;
+                                    $_SESSION['usuario'] = $nome;
                                     $usuario = new Usuario($nome, $email, $senha);
 
                                     $usuario->insert();

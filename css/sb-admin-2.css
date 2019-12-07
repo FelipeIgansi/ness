@@ -1622,10 +1622,12 @@ pre code {
   color: #fff;
   background-color: #4e73df;
   border-color: #ffffff;
+  
 }
 .table .thead-blue {
   color: #fff;
-  background-color: #4e73df;
+  background-color: #070707;
+  border-radius: 20px;  
 }
 
 .table .thead-light th {
