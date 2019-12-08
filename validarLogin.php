@@ -2,6 +2,7 @@
     session_start();
     require_once('config.php');
     $sql = new Sql();
+
     if (empty($_GET["nome"]) || empty($_GET["senha"])){
 
         header('location: login.html');

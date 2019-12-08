@@ -1,5 +1,7 @@
 <?PHP
-  //error_reporting(0);
+  require_once('config.php');
+  include('conexao.php');
+  error_reporting(0);
   session_start();
   $nome_sessão =  $_SESSION['usuario'];
     
@@ -246,6 +248,7 @@
               
               <?php
               if ($nome_sessão) {
+                
                 echo "
                   <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
                     <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
@@ -291,8 +294,7 @@
 
           <div>
             <?PHP
-              require_once('config.php');
-              include('conexao.php');
+              
               $sql = new Sql();
               //$senha = $_GET['senha'];
               $conta = new ClassConta();
@@ -302,33 +304,29 @@
 
               $pesquisa = new Busca();
 
-              
-
               $ListafkUsuario = $usuario->loadIdByName($usu);
 
               //forma de mostrar o valor de um array
               foreach ($ListafkUsuario as $value) 
               { $fkUsuario = $value ['idUsuario']; }
               
-              echo "FK do usuario:  ",$fkUsuario;
+              echo "FK do usuario:  ",$fkUsuario,"<br>";
 
               if ($fkUsuario <> ""){
               $ListaidsContas =  $pesquisa->loadColByParam
-              ($fkUsuario) or die ("Conta não está associada ao usuario!");
-              }
-
+              ($fkUsuario);
               foreach ($ListaidsContas as $value) {
 
                 $IdContas = $value ['idConta'];
               }
 
               print_r("Lista de IDs com contas associadas ao usuario:  ",$ListaidsContas);
-
-
+              }else
+              {
+                echo "Conta não está associada ao usuario!","<br>";
+              }
 
               $listaIds = ClassConta::getListIds();
-
-              error_reporting(0);
 
             ?>
 
@@ -360,6 +358,7 @@
                       <td> <?PHP echo $item['senha'] ?> </td>
                       <td> <?PHP echo $item['url'] ?> </td>
                       <td> <?PHP echo $item['tipoConta'] ?> </td>
+                      <td> <?PHP echo '$IdContas' ?> </td>
 
                     </tr>
                   <?php } ?>

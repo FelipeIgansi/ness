@@ -21,7 +21,8 @@
 </head>
 
 <body id="page-top">
-    <?php session_start(); error_reporting(0);?>
+    <?php session_start(); 
+    error_reporting(0);?>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -251,16 +252,42 @@
                                 $email = $_GET["email"];
                                 $senha = $_GET["senha"];
                                 $re_senha = $_GET["re-senha"];
+
+                                $caracEsp = '@!#$%&*(){}[]';
+                                $numeros = '0123456789';
+                                $minus = 'abcdefghijklmnopqrstuvwxyz';
+                                $maius = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+                                $usuario = new Usuario($nome, $email, $senha);
+
+                                $nomeTabela = $usuario ->loadIdByName($nome);
+
+                                foreach ($nomeTabela as $value) 
+                                  { $nomeObtido = $value ['nomeUsuario']; }    
+                                  echo $nomeObtido;
+
+
                                 if ($senha <> $re_senha) {
+                                    
                                     echo "<script>
                                             alert('Senha Incorreta!');
                                             window.location.href='register.html';
                                         </script>";
-                                } else {
+                                } 
+                                else if ( strlen($senha) < 6){
+                                    
+                                    echo "<script>
+                                            alert('Senha deve conter pelo menos: 6 caracteres');
+                                            window.location.href='register.html';
+                                        </script>";    
+                                    exit();
+
+                                } 
+                                
+                                else {
 
                                     //$id = uniqid(rand(), true);
                                     $_SESSION['usuario'] = $nome;
-                                    $usuario = new Usuario($nome, $email, $senha);
 
                                     $usuario->insert();
 
