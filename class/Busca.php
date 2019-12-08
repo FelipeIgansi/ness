@@ -1,7 +1,7 @@
 <?php
 
 
-class pesquisaParametroPorNome{
+class Busca{
 
     //Setters
 
@@ -39,12 +39,14 @@ class pesquisaParametroPorNome{
     }
 
 
-    public function loadParamByName($tabela = "", $param = "", $nome = "")
+    public function loadColByParam($valorParametro = "")
     {
         $sql = new Sql();
         $result = $sql->select(
-            "SELECT '$param' FROM '$tabela'  where nomeUsuario = :NOME",
-            array(":NOME" => $nome)
+            "SELECT Usuario_idUsuario FROM conta  where Usuario_idUsuario = :VALORPARAMETRO",
+            array(
+                ":VALORPARAMETRO" => $valorParametro
+                )
         );
         return $result;
 
@@ -53,6 +55,30 @@ class pesquisaParametroPorNome{
             $this->setData($result[0]);
         }
     }
+
+
+
+    // public function loadColByParam($tabela = "", $coluna = "", $nomeParametro = "", $valorParametro = "")
+    // {
+    //     $sql = new Sql();
+    //     $result = $sql->select(
+    //         "SELECT ':COL' FROM ':TABELA'  where :NOMEPARAMETRO = :VALORPARAMETRO",
+    //         array(
+    //             ":COL" => $coluna,
+    //             ":TABELA" => $tabela,
+    //             ":NOMEPARAMETRO" => $nomeParametro,
+    //             ":VALORPARAMETRO" => $valorParametro
+    //             )
+    //     );
+    //     return $result;
+
+    //     if (count($result) > 0) {
+
+    //         $this->setData($result[0]);
+    //     }
+    // }
+
+
 
     public function setData($data)
     {
