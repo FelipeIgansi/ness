@@ -1,5 +1,5 @@
 <?PHP
-  error_reporting(0);
+  //error_reporting(0);
   session_start();
   $nome_sessão =  $_SESSION['usuario'];
     
@@ -291,44 +291,44 @@
 
           <div>
             <?PHP
-            require_once('config.php');
-            include('conexao.php');
-            $sql = new Sql();
-            //$senha = $_GET['senha'];
-            $conta = new ClassConta();
-            $usu =  $_SESSION['usuario'];
+              require_once('config.php');
+              include('conexao.php');
+              $sql = new Sql();
+              //$senha = $_GET['senha'];
+              $conta = new ClassConta();
+              $usu =  $_SESSION['usuario'];
 
-            $usuario = new Usuario();
+              $usuario = new Usuario();
 
-            $pesquisa = new Busca();
+              $pesquisa = new Busca();
 
-            
+              
 
-            $ListafkUsuario = $usuario->loadIdByName($usu);
+              $ListafkUsuario = $usuario->loadIdByName($usu);
 
-            //forma de mostrar o valor de um array
-            foreach ($ListafkUsuario as $value) {
+              //forma de mostrar o valor de um array
+              foreach ($ListafkUsuario as $value) 
+              { $fkUsuario = $value ['idUsuario']; }
+              
+              echo "FK do usuario:  ",$fkUsuario;
 
-              $fkUsuario = $value ['idUsuario'];
-            }
-            echo "FK do usuario:  ",$fkUsuario;
+              if ($fkUsuario <> ""){
+              $ListaidsContas =  $pesquisa->loadColByParam
+              ($fkUsuario) or die ("Conta não está associada ao usuario!");
+              }
 
-            $ListaidsContas =  $pesquisa->loadColByParam
-            ($fkUsuario) 
-            or die ("Conta não está associada ao usuario!");
+              foreach ($ListaidsContas as $value) {
 
-            foreach ($ListaidsContas as $value) {
+                $IdContas = $value ['idConta'];
+              }
 
-              $IdContas = $value ['idConta'];
-            }
-
-            print_r("Lista de IDs com contas associadas ao usuario:  ",$ListaidsContas);
+              print_r("Lista de IDs com contas associadas ao usuario:  ",$ListaidsContas);
 
 
 
-            $listaIds = ClassConta::getListIds();
+              $listaIds = ClassConta::getListIds();
 
-            error_reporting(0);
+              error_reporting(0);
 
             ?>
 
