@@ -1,10 +1,10 @@
 <?PHP
-  require_once('config.php');
-  include('conexao.php');
-  error_reporting(0);
-  session_start();
-  $nome_sessão =  $_SESSION['usuario'];
-    
+require_once('config.php');
+include('conexao.php');
+error_reporting(0);
+session_start();
+$nome_sessao =  $_SESSION['usuario'];
+
 ?>
 
 
@@ -220,25 +220,13 @@
             <!-- Nav Item - User Information -->
 
             <li class="nav-item dropdown no-arrow">
-              
-              <?php
-              if ($nome_sessão) {
-                
-                echo "
-                  <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
-                    <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                      <strong>", $nome_sessão, "</strong>
-                    </span>
-                  </a>";
-              } 
-               if($nome_sessão == "") {
-                
-                echo "<br><a style='color:black;' href='login.html'>Entrar</a>";
-                
-              }
 
-              ?>
-              
+              <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
+                <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                  <strong><?php echo $nome_sessao?></strong>
+                </span>
+              </a>
+
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="perfil.php">
@@ -257,7 +245,7 @@
 
         </nav>
         <!-- End of Topbar -->
-
+        <?php  session_regenerate_id();?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -269,39 +257,38 @@
 
           <div>
             <?PHP
-              
-              $sql = new Sql();
-              //$senha = $_GET['senha'];
-              $conta = new ClassConta();
-              $usu =  $_SESSION['usuario'];
 
-              $usuario = new Usuario();
+            $sql = new Sql();
+            //$senha = $_GET['senha'];
+            $conta = new ClassConta();
+            $usu =  $_SESSION['usuario'];
 
-              $pesquisa = new Busca();
+            $usuario = new Usuario();
 
-              $ListafkUsuario = $usuario->loadIdByName($usu);
+            $pesquisa = new Busca();
 
-              //forma de mostrar o valor de um array
-              foreach ($ListafkUsuario as $value) 
-              { $fkUsuario = $value ['idUsuario']; }
-              
-              echo "FK do usuario:  ",$fkUsuario,"<br>";
+            $ListafkUsuario = $usuario->loadIdByName($usu);
 
-              if ($fkUsuario <> ""){
-              $ListaidsContas =  $pesquisa->loadColByParam
-              ($fkUsuario);
+            //forma de mostrar o valor de um array
+            foreach ($ListafkUsuario as $value) {
+              $fkUsuario = $value['idUsuario'];
+            }
+
+            echo "FK do usuario:  ", $fkUsuario, "<br>";
+
+            if ($fkUsuario <> "") {
+              $ListaidsContas =  $pesquisa->loadColByParam($fkUsuario);
               foreach ($ListaidsContas as $value) {
 
-                $IdContas = $value ['idConta'];
+                $IdContas = $value['idConta'];
               }
 
-              print_r("Lista de IDs com contas associadas ao usuario:  ",$ListaidsContas);
-              }else
-              {
-                echo "Conta não está associada ao usuario!","<br>";
-              }
+              print_r("Lista de IDs com contas associadas ao usuario:  ", $ListaidsContas);
+            } else {
+              echo "Conta não está associada ao usuario!", "<br>";
+            }
 
-              $listaIds = ClassConta::getListIds();
+            $listaIds = ClassConta::getListIds();
 
             ?>
 
@@ -393,7 +380,6 @@
               <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                 <a class="btn btn-primary" href="login.html">Sair</a>
-                <?php session_destroy(); ?>
               </div>
             </div>
           </div>

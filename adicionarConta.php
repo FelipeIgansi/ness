@@ -1,3 +1,14 @@
+<?PHP
+  require_once('config.php');
+  include('conexao.php');
+  error_reporting(0);
+  session_start();
+  $nome_sessao =  $_SESSION['usuario'];
+    
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,7 +32,6 @@
 
 
 <body id="page-top">
-    <?php error_reporting(0); session_start();?>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
