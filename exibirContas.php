@@ -252,7 +252,7 @@ $nome_sessao =  $_SESSION['usuario'];
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"><span style="font-size: 25pt;"><strong> Contas</strong></span></h1>
-            <a class="btn btn-outline-info" href="exibirContas.php">Ver Contas detalhadas</a>
+            <a class="btn btn-outline-info" href="index.php">Voltar para a listagem reduzida</a>
             <a href="adicionarConta.php" class="btn btn btn-primary ">Adicionar Conta</a>
           </div>
 
@@ -289,7 +289,24 @@ $nome_sessao =  $_SESSION['usuario'];
 
             ?>
 
-    
+            <table class="table">
+              <thead class="thead-blue">
+                <tr id="colCabecalho">
+                  <!-- <th scope="col">id</th> -->
+                  <th scope="col">Conta</th>
+                  <th scope="col">E-mail usado</th>
+                  <th scope="col">Senha</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Tipo de conta</th>
+                  <th scope="col">Usuario</th>
+
+                  <!-- <th scope="col">Usuario</th> -->
+
+
+                </tr>
+              </thead>
+              <tbody>
+
                 <?php foreach ($listaIds as $con) {
                   
                   $idContaObtido = $con['idConta'];
@@ -298,21 +315,24 @@ $nome_sessao =  $_SESSION['usuario'];
                 
                   ?>
                   <?php foreach ($listaTabelaContas as $item) {  ?>
-                    <div style="background-color: #ebeced ; padding:20px; border-radius: 15px;">
-                    <span style="color: blue;font-size: 15pt;"><strong> Conta: </strong></span> <strong> <?PHP echo $item['nomeConta'] ?></strong>
-                     
-                      <p style="text-align: right; "><span style="color: blue;font-size: 15pt;"><strong> Senha: </strong> </span> <strong><?PHP echo $item['senha'] ?></strong></p>
-                      </div>
-                      <br>
-                      
+                    <tr>
+                      <td> <?PHP echo $item['nomeConta'] ?> </td>
+                      <td> <?PHP echo $item['email'] ?> </td>
+                      <td> <?PHP echo $item['senha'] ?> </td>
+                      <td> <?PHP echo $item['url'] ?> </td>
+                      <td> <?PHP echo $item['tipoConta'] ?> </td>
+                      <td> <?PHP echo "$nome_sessao" ?> </td>
 
-                    
+                    </tr>
                   <?php } ?>
 
 
                 <?php } ?>
-
                     
+              </tbody>
+            </table>
+
+
           </div>
 
           <div>

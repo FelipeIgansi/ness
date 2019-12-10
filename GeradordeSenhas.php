@@ -307,7 +307,7 @@ $nome_sessao =  $_SESSION['usuario'];
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Gerador de senhas</h1>
-                            <a href="adicionarConta.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Adicionar Conta </a>
+                            <a href="adicionarConta.php" class="btn btn btn-primary ">Adicionar Conta</a>
                         </div>
 
 

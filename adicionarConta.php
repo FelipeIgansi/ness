@@ -313,6 +313,9 @@
                                 <option id="optContaBanco" value="Conta bancaria">Conta Bancaria</option>
                             </select>
                         </div>
+                        <div class="form-group">                           
+                            <input type="hidden" name="fkUsuario" placeholder="Digite o link do site">
+                        </div>
                         <button type="submit" class="btn btn-primary">Criar conta</button>
                     </form>
 
