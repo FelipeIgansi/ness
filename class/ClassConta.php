@@ -115,7 +115,17 @@ class ClassConta
             $this->setData($result[0]);
         }
     }
+    public function loadByFk($fk) : array
+    {
+        $sql = new Sql();
+        $result = $sql->select("SELECT * FROM conta where Usuario_idUsuario = :FK", array(":FK" => $fk));
 
+        return $result;
+        if (count($result) > 0) {
+
+            $this->setData($result[0]);
+        }
+    }
 
     public static function getList()
     {

@@ -1,10 +1,10 @@
 <?PHP
-  require_once('config.php');
-  include('conexao.php');
-  error_reporting(0);
-  session_start();
-  $nome_sessao =  $_SESSION['usuario'];
-    
+require_once('config.php');
+include('conexao.php');
+error_reporting(0);
+session_start();
+$nome_sessao =  $_SESSION['usuario'];
+
 ?>
 
 
@@ -104,7 +104,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
 
-                        
+
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
 
@@ -113,7 +113,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-search fa-fw"></i>
                                 </a>
-                                
+
                             </li>
 
                             <!-- Nav Item - Alerts -->
@@ -232,31 +232,11 @@
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
 
-
-                                <?php
-
-                                include('conexao.php');
-                                if (isset($_GET["nome"])) {
-                                    $nome = $_GET["nome"];
-                                    $stmt = $conexao->prepare("SELECT nome FROM usuario");
-                                    echo "
-                                    <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
                                     <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                                        <strong>$nome</strong>
+                                        <strong><?php echo $nome_sessao ?></strong>
                                     </span>
-                                    </a>";
-                                } else {
-
-                                    echo "
-                                    <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                    <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                                        <strong>Entrar</strong>
-                                    </span>
-                                    </a>";
-                                }
-
-
-                                ?>
+                                </a>
 
 
                                 <!-- Dropdown - User Information -->

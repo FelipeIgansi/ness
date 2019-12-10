@@ -274,7 +274,6 @@ $nome_sessao =  $_SESSION['usuario'];
               $fkUsuario = $value['idUsuario'];
             }
 
-            echo "FK do usuario:  ", $fkUsuario, "<br>";
 
             if ($fkUsuario <> "") {
               $ListaidsContas =  $pesquisa->loadColByParam($fkUsuario);
@@ -289,6 +288,7 @@ $nome_sessao =  $_SESSION['usuario'];
             }
 
             $listaIds = ClassConta::getListIds();
+            
 
             ?>
 
@@ -301,6 +301,8 @@ $nome_sessao =  $_SESSION['usuario'];
                   <th scope="col">Senha</th>
                   <th scope="col">URL</th>
                   <th scope="col">Tipo de conta</th>
+                  <th scope="col">Identificação do usuario</th>
+
                   <!-- <th scope="col">Usuario</th> -->
 
 
@@ -309,18 +311,20 @@ $nome_sessao =  $_SESSION['usuario'];
               <tbody>
 
                 <?php foreach ($listaIds as $con) {
-                  $con = $conta->loadById($con['idConta']);
-                  echo $con;
+                  
+                  $idContaObtido = $con['idConta'];
+                                   
+                  $listaTabelaContas = $conta->loadByFk($idContaObtido);
+                
                   ?>
-                  <?php foreach ($con as $item) { ?>
+                  <?php foreach ($listaTabelaContas as $item) {  ?>
                     <tr>
-                      <td> <?PHP echo $item['idConta'] ?> </td>
                       <td> <?PHP echo $item['nomeConta'] ?> </td>
                       <td> <?PHP echo $item['email'] ?> </td>
                       <td> <?PHP echo $item['senha'] ?> </td>
                       <td> <?PHP echo $item['url'] ?> </td>
                       <td> <?PHP echo $item['tipoConta'] ?> </td>
-                      <td> <?PHP echo '$IdContas' ?> </td>
+                      <td> <?PHP echo "$idContaObtido" ?> </td>
 
                     </tr>
                   <?php } ?>
