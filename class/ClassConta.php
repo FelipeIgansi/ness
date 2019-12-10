@@ -63,7 +63,7 @@ class ClassConta
     }
     public function setSenha($value)
     {
-        $this->id = $value;
+        $this->senha = $value;
     }
 
     public function setURL($value)

@@ -313,8 +313,18 @@
                                 <option id="optContaBanco" value="Conta bancaria">Conta Bancaria</option>
                             </select>
                         </div>
+                        <?php
+                        
+                        $ListafkUsuario = $usuario->loadIdByName($nome_sessao);
+
+                        //forma de mostrar o valor de um array
+                        foreach ($ListafkUsuario as $value) {
+                          $fkUsuario = $value['idUsuario'];
+                        }
+                                               
+                        ?>
                         <div class="form-group">                           
-                            <input type="hidden" name="fkUsuario" placeholder="Digite o link do site">
+                            <input type="hidden" name="fk_usuario" value="<?php echo $fkUsuario ?>">
                         </div>
                         <button type="submit" class="btn btn-primary">Criar conta</button>
                     </form>
