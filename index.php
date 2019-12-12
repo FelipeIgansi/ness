@@ -257,7 +257,6 @@ $nome_sessao =  $_SESSION['usuario'];
 
         </nav>
         <!-- End of Topbar -->
-        <?php session_regenerate_id(); ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -276,21 +275,29 @@ $nome_sessao =  $_SESSION['usuario'];
             $usuario = new Usuario();
             $pesquisa = new Busca();
 
-            $ListafkUsuario = $usuario->loadIdByName($nome_sessao);
+            $InformacoesUsuario = $usuario->search($nome_sessao);
+            $InformacoesContas = $conta->loadByFk($InformacoesUsuario['idUsuario']);
+
+            echo"<pre>";
+            print_r($InformacoesUsuario);
+            echo"</pre>";
+            echo"<pre>";
+            print_r($InformacoesContas);
+            echo"</pre>";
 
             //forma de mostrar o valor de um array
-            foreach ($ListafkUsuario as $value) {
+            foreach ($InformacoesUsuario as $value) {
               $fkUsuario = $value['idUsuario'];
             }
 
-
+            echo 'Resultado de id usuario',$fkUsuario, "<br>";
             if ($fkUsuario <> "") {
               $ListaidsContas =  $pesquisa->loadColByParam($fkUsuario);
               foreach ($ListaidsContas as $value) {
 
                 $IdContas = $value['idConta'];
               }
-
+              echo 'Resultado de id Conta: ', $IdContas;
               print_r("Lista de IDs com contas associadas ao usuario:  ", $ListaidsContas);
             } else {
               echo "Conta não está associada ao usuario!", "<br>";

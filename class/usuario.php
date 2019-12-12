@@ -144,7 +144,7 @@ class Usuario
             array(
                 ':NOME' => $this->getNome(),
                 ':EMAIL' => $this->getEmail(),
-                ':PWD' => base64_encode($this->getSenha())
+                ':PWD' => $this->getSenha()
             )
         );
 

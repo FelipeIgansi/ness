@@ -8,7 +8,7 @@
     $tipoConta = $_GET["tipoConta"];
     $fk_usuario = $_GET["fk_usuario"];
 
-    $conta = new ClassConta($nome, $email, base64_encode("$senha"), $url, $tipoConta, $fk_usuario);
+    $conta = new ClassConta($nome, $email, $senha, $url, $tipoConta, $fk_usuario);
 
     $conta-> insert();
 
