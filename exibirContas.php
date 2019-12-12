@@ -257,7 +257,6 @@ $nome_sessao =  $_SESSION['usuario'];
 
         </nav>
         <!-- End of Topbar -->
-        <?php session_regenerate_id(); ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -328,7 +327,6 @@ $nome_sessao =  $_SESSION['usuario'];
                   ?>
                   <?php foreach ($listaTabelaContas as $item) {  ?>
                     <tr>
-                    <?PHP echo $item['nomeConta'] ?>
                       <td> <?PHP echo $item['nomeConta'] ?> </td>
                       <td> <?PHP echo $item['email'] ?> </td>
                       <td> <?PHP echo base64_decode($item['senha']); ?> </td>

@@ -276,28 +276,19 @@ $nome_sessao =  $_SESSION['usuario'];
             $pesquisa = new Busca();
 
             $InformacoesUsuario = $usuario->search($nome_sessao);
-            $InformacoesContas = $conta->loadByFk($InformacoesUsuario['idUsuario']);
-
-            echo"<pre>";
-            print_r($InformacoesUsuario);
-            echo"</pre>";
-            echo"<pre>";
-            print_r($InformacoesContas);
-            echo"</pre>";
+            
 
             //forma de mostrar o valor de um array
             foreach ($InformacoesUsuario as $value) {
               $fkUsuario = $value['idUsuario'];
             }
 
-            echo 'Resultado de id usuario',$fkUsuario, "<br>";
             if ($fkUsuario <> "") {
               $ListaidsContas =  $pesquisa->loadColByParam($fkUsuario);
               foreach ($ListaidsContas as $value) {
 
                 $IdContas = $value['idConta'];
               }
-              echo 'Resultado de id Conta: ', $IdContas;
               print_r("Lista de IDs com contas associadas ao usuario:  ", $ListaidsContas);
             } else {
               echo "Conta não está associada ao usuario!", "<br>";
