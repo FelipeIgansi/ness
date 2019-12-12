@@ -280,7 +280,6 @@ $nome_sessao =  $_SESSION['usuario'];
             foreach ($InformacoesUsuario as $value) {
               $idUsuario = $value['idUsuario'];
             }
-
            
             $InformacoesContas = $conta->loadByFk($idUsuario);
 
@@ -298,8 +297,6 @@ $nome_sessao =  $_SESSION['usuario'];
                   <th scope="col">Usuario</th>
 
                   <!-- <th scope="col">Usuario</th> -->
-
-
                 </tr>
               </thead>
               <tbody>
@@ -315,11 +312,8 @@ $nome_sessao =  $_SESSION['usuario'];
 
                     </tr>
                 <?php } ?>
-
               </tbody>
             </table>
-
-
           </div>
 
           <div>
@@ -329,9 +323,6 @@ $nome_sessao =  $_SESSION['usuario'];
 
           <!-- Content Row -->
           <div class="row">
-
-
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
               <div class="container my-auto">

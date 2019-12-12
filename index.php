@@ -269,8 +269,6 @@ $nome_sessao =  $_SESSION['usuario'];
 
           <div>
             <?PHP
-
-
             $sql = new Sql();
             $conta = new ClassConta();
             $usuario = new Usuario();
@@ -282,10 +280,7 @@ $nome_sessao =  $_SESSION['usuario'];
               $idUsuario = $value['idUsuario'];
             }
 
-
             $InformacoesContas = $conta->loadByFk($idUsuario);
-
-
             ?>
 
 
@@ -299,26 +294,14 @@ $nome_sessao =  $_SESSION['usuario'];
                     <?PHP echo base64_decode($item['senha']); ?></strong></p>
               </div>
               <br>
-
-
-
             <?php } ?>
-
-
-
-
           </div>
 
           <div>
-            <!-- <a class="btn btn-info" href="login.html">Login</a>
-            <a class="btn btn-info" href="register.html">Registrar</a> -->
           </div>
 
           <!-- Content Row -->
           <div class="row">
-
-
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
               <div class="container my-auto">
