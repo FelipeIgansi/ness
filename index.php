@@ -270,59 +270,41 @@ $nome_sessao =  $_SESSION['usuario'];
           <div>
             <?PHP
 
+
             $sql = new Sql();
             $conta = new ClassConta();
             $usuario = new Usuario();
             $pesquisa = new Busca();
 
             $InformacoesUsuario = $usuario->search($nome_sessao);
-            
 
-            //forma de mostrar o valor de um array
             foreach ($InformacoesUsuario as $value) {
-              $fkUsuario = $value['idUsuario'];
+              $idUsuario = $value['idUsuario'];
             }
 
-            if ($fkUsuario <> "") {
-              $ListaidsContas =  $pesquisa->loadColByParam($fkUsuario);
-              foreach ($ListaidsContas as $value) {
 
-                $IdContas = $value['idConta'];
-              }
-              print_r("Lista de IDs com contas associadas ao usuario:  ", $ListaidsContas);
-            } else {
-              echo "Conta não está associada ao usuario!", "<br>";
-            }
-
-            $listaIds = ClassConta::getListIds();
+            $InformacoesContas = $conta->loadByFk($idUsuario);
 
 
             ?>
 
 
-            <?php foreach ($listaIds as $con) {
 
-              $idContaObtido = $con['idConta'];
+            <?php foreach ($InformacoesContas as $item) {  ?>
+              <div style="background-color: #ebeced ; padding:20px; border-radius: 15px;">
+                <span style="color: blue;font-size: 15pt;"><strong> Conta: </strong></span> <strong> <?PHP echo $item['nomeConta'] ?></strong>
 
-              $listaTabelaContas = $conta->loadByFk($idContaObtido);
-
-              ?>
-              <?php foreach ($listaTabelaContas as $item) {  ?>
-                <div style="background-color: #ebeced ; padding:20px; border-radius: 15px;">
-                  <span style="color: blue;font-size: 15pt;"><strong> Conta: </strong></span> <strong> <?PHP echo $item['nomeConta'] ?></strong>
-
-                  <p style="text-align: right; ">
+                <p style="text-align: right; ">
                   <span style="color: blue;font-size: 15pt;"><strong> Senha: </strong> </span> <strong>
                     <?PHP echo base64_decode($item['senha']); ?></strong></p>
-                </div>
-                <br>
+              </div>
+              <br>
 
-
-
-              <?php } ?>
 
 
             <?php } ?>
+
+
 
 
           </div>

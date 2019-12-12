@@ -275,28 +275,14 @@ $nome_sessao =  $_SESSION['usuario'];
             $usuario = new Usuario();
             $pesquisa = new Busca();
 
-            $ListafkUsuario = $usuario->loadIdByName($nome_sessao);
+            $InformacoesUsuario = $usuario->search($nome_sessao);
 
-            //forma de mostrar o valor de um array
-            foreach ($ListafkUsuario as $value) {
-              $fkUsuario = $value['idUsuario'];
+            foreach ($InformacoesUsuario as $value) {
+              $idUsuario = $value['idUsuario'];
             }
 
-
-            if ($fkUsuario <> "") {
-              $ListaidsContas =  $pesquisa->loadColByParam($fkUsuario);
-              foreach ($ListaidsContas as $value) {
-
-                $IdContas = $value['idConta'];
-              }
-
-              print_r("Lista de IDs com contas associadas ao usuario:  ", $ListaidsContas);
-            } else {
-              echo "Conta não está associada ao usuario!", "<br>";
-            }
-
-            $listaIds = ClassConta::getListIds();
-
+           
+            $InformacoesContas = $conta->loadByFk($idUsuario);
 
             ?>
 
@@ -318,14 +304,7 @@ $nome_sessao =  $_SESSION['usuario'];
               </thead>
               <tbody>
 
-                <?php foreach ($listaIds as $con) {
-
-                  $idContaObtido = $con['idConta'];
-
-                  $listaTabelaContas = $conta->loadByFk($idContaObtido);
-
-                  ?>
-                  <?php foreach ($listaTabelaContas as $item) {  ?>
+                  <?php foreach ($InformacoesContas as $item) {  ?>
                     <tr>
                       <td> <?PHP echo $item['nomeConta'] ?> </td>
                       <td> <?PHP echo $item['email'] ?> </td>
@@ -335,9 +314,6 @@ $nome_sessao =  $_SESSION['usuario'];
                       <td> <?PHP echo "$nome_sessao" ?> </td>
 
                     </tr>
-                  <?php } ?>
-
-
                 <?php } ?>
 
               </tbody>
