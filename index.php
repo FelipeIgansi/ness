@@ -220,12 +220,24 @@ $nome_sessao =  $_SESSION['usuario'];
             <!-- Nav Item - User Information -->
 
             <li class="nav-item dropdown no-arrow">
+              <?php
 
-              <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
-                <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                  <strong><?php echo $nome_sessao?></strong>
-                </span>
-              </a>
+              if ($nome_sessao <> "") {
+                echo "<a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
+                  <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                    <strong> $nome_sessao</strong>
+                  </span>
+                </a>";
+              } else {
+                echo "<a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
+                  <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                    <strong> Entrar</strong>
+                  </span>
+                </a>";
+              }
+
+              ?>
+
 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -245,7 +257,7 @@ $nome_sessao =  $_SESSION['usuario'];
 
         </nav>
         <!-- End of Topbar -->
-        <?php  session_regenerate_id();?>
+        <?php session_regenerate_id(); ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -285,34 +297,36 @@ $nome_sessao =  $_SESSION['usuario'];
             }
 
             $listaIds = ClassConta::getListIds();
-            
+
 
             ?>
 
-    
-                <?php foreach ($listaIds as $con) {
-                  
-                  $idContaObtido = $con['idConta'];
-                                   
-                  $listaTabelaContas = $conta->loadByFk($idContaObtido);
-                
-                  ?>
-                  <?php foreach ($listaTabelaContas as $item) {  ?>
-                    <div style="background-color: #ebeced ; padding:20px; border-radius: 15px;">
-                    <span style="color: blue;font-size: 15pt;"><strong> Conta: </strong></span> <strong> <?PHP echo $item['nomeConta'] ?></strong>
-                     
-                      <p style="text-align: right; "><span style="color: blue;font-size: 15pt;"><strong> Senha: </strong> </span> <strong><?PHP echo $item['senha'] ?></strong></p>
-                      </div>
-                      <br>
-                      
 
-                    
-                  <?php } ?>
+            <?php foreach ($listaIds as $con) {
+
+              $idContaObtido = $con['idConta'];
+
+              $listaTabelaContas = $conta->loadByFk($idContaObtido);
+
+              ?>
+              <?php foreach ($listaTabelaContas as $item) {  ?>
+                <div style="background-color: #ebeced ; padding:20px; border-radius: 15px;">
+                  <span style="color: blue;font-size: 15pt;"><strong> Conta: </strong></span> <strong> <?PHP echo $item['nomeConta'] ?></strong>
+
+                  <p style="text-align: right; ">
+                  <span style="color: blue;font-size: 15pt;"><strong> Senha: </strong> </span> <strong>
+                    <?PHP echo base64_decode($item['senha']); ?></strong></p>
+                </div>
+                <br>
 
 
-                <?php } ?>
 
-                    
+              <?php } ?>
+
+
+            <?php } ?>
+
+
           </div>
 
           <div>

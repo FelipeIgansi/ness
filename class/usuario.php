@@ -140,11 +140,11 @@ class Usuario
     {
         $sql = new Sql();
         $result = $sql->select(
-            "CALL proc_usuarios_insert(:NOME, :EMAIL, md5(:PWD))",
+            "CALL proc_usuarios_insert(:NOME, :EMAIL, :PWD)",
             array(
                 ':NOME' => $this->getNome(),
                 ':EMAIL' => $this->getEmail(),
-                ':PWD' => $this->getSenha()
+                ':PWD' => base64_encode($this->getSenha())
             )
         );
 
@@ -162,12 +162,12 @@ class Usuario
         $sql = new Sql();
 
         $sql->query(
-            "UPDATE usuario SET nomeUsuario = :NOME, email = :EMAIL, senha = md5(:SENHA) 
+            "UPDATE usuario SET nomeUsuario = :NOME, email = :EMAIL, senha = :SENHA 
             where idUsuario = :ID",
             array(
                 ':NOME' => $this->getNome(),
                 ':EMAIL' => $this->getEmail(),
-                ':SENHA' => $this->getSenha(),
+                ':SENHA' => base64_decode(''.$this->getSenha().''),
                 ':ID' => $this->getID()
             )
 

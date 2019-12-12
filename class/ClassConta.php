@@ -151,7 +151,7 @@ class ClassConta
             "SELECT * FROM conta WHERE nomeConta = :NOME AND senha = :PWD",
             array(
                 ":NOME" => $login,
-                ":PWD" => $pwd
+                ":PWD" => base64_decode($pwd)
             )
         );
 
@@ -184,7 +184,7 @@ class ClassConta
             array(
                 ':NOME' => $this->getNomeConta(),
                 ':EMAIL' => $this->getEmail(),
-                ':PWD' => $this->getSenha(),
+                ':PWD' => base64_encode($this->getSenha()),
                 ':URL' => $this->getURL(),
                 ':TIPOCONTA' => $this->getTipoConta(),
                 ':FK_USUARIO' => $this->getFKIdUsuario()
@@ -208,13 +208,13 @@ class ClassConta
         $sql = new Sql();
 
         $sql->query(
-            "UPDATE conta SET nomeConta = :NOME, email = :EMAIL, senha = md5(':SENHA'), 
+            "UPDATE conta SET nomeConta = :NOME, email = :EMAIL, senha = :SENHA, 
                 url = :URL, tipoConta = :TIPOCONTA, Usuario_idUsuario = :FK_USUARIO  
             where idConta = :ID",
             array(
                 ':NOME' => $this->getNomeConta(),
                 ':EMAIL' => $this->getEmail(),
-                ':SENHA' => $this->getSenha(),
+                ':SENHA' => base64_decode(''.$this->getSenha().''),
                 ':URL' => $this->getURL(),
                 ':TIPOCONTA' => $this->getTipoConta(),
                 ':FK_USUARIO' => $this->getFKIdUsuario(),
@@ -241,7 +241,7 @@ class ClassConta
     {
         $this->setIdConta($data['idConta']);
         $this->setNomeConta($data['nomeConta']);
-        $this->setSenha($data['senha']);
+        $this->setSenha(base64_decode($data['senha']));
     }
     // Mostrar as informações
     public function __toString()
@@ -251,7 +251,7 @@ class ClassConta
                 "idConta" => $this->getIdConta(),
                 "nomeConta" => $this->getNomeConta(),
                 "email" => $this->getEmail(),
-                "senha" => $this->getSenha(),
+                "senha" => base64_decode($this->getSenha()),
                 "url" => $this->getURL(),
                 "tipoconta" => $this->getTipoConta(),
                 "fk_usuario" => $this->getFKIdUsuario(),

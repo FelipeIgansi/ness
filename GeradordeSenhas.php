@@ -232,11 +232,23 @@ $nome_sessao =  $_SESSION['usuario'];
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
 
-                                <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
-                                    <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                                        <strong><?php echo $nome_sessao ?></strong>
-                                    </span>
-                                </a>
+                                <?php
+
+                                if ($nome_sessao <> "") {
+                                    echo "<a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
+                                        <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                                        <strong> $nome_sessao</strong>
+                                        </span>
+                                    </a>";
+                                } else {
+                                    echo "<a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
+                                        <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                                        <strong> Entrar</strong>
+                                        </span>
+                                    </a>";
+                                }
+
+                                ?>
 
 
                                 <!-- Dropdown - User Information -->

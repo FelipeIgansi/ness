@@ -234,17 +234,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <?php
 
-                            include('conexao.php');
-                            require_once('config.php');
-
                             $usuario = new Usuario();
                             $nome = $_GET["nome"];
 
-                            if (isset($_SESSION['usuario'])){
+                            if ($nome_sessao <> ""){
                                 echo "
                                 <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                                 <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                                    <strong>",$_SESSION['usuario'],"</strong>
+                                    <strong>",$nome_sessao,"</strong>
                                 </span>
                                 </a>";
                             } else {
@@ -289,7 +286,7 @@
 
                     <form method="get" action="inserirConta.php">
                         <div class="form-group">
-                            <label for="inputName">Nome/Usuario: </label>
+                            <label for="inputName">Conta: </label>
                             <input type="text" class="form-control" id="inputName" name="nome" placeholder="Digite seu nome..." required>
                         </div>
                         <div class="form-row">

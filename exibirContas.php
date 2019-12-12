@@ -221,11 +221,23 @@ $nome_sessao =  $_SESSION['usuario'];
 
             <li class="nav-item dropdown no-arrow">
 
-              <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
-                <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                  <strong><?php echo $nome_sessao?></strong>
-                </span>
-              </a>
+              <?php
+
+              if ($nome_sessao <> "") {
+                echo "<a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
+                  <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                    <strong> $nome_sessao</strong>
+                  </span>
+                </a>";
+              } else {
+                echo "<a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown'>
+                  <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
+                    <strong> Entrar</strong>
+                  </span>
+                </a>";
+              }
+
+              ?>
 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -245,7 +257,7 @@ $nome_sessao =  $_SESSION['usuario'];
 
         </nav>
         <!-- End of Topbar -->
-        <?php  session_regenerate_id();?>
+        <?php session_regenerate_id(); ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -285,7 +297,7 @@ $nome_sessao =  $_SESSION['usuario'];
             }
 
             $listaIds = ClassConta::getListIds();
-            
+
 
             ?>
 
@@ -308,17 +320,18 @@ $nome_sessao =  $_SESSION['usuario'];
               <tbody>
 
                 <?php foreach ($listaIds as $con) {
-                  
+
                   $idContaObtido = $con['idConta'];
-                                   
+
                   $listaTabelaContas = $conta->loadByFk($idContaObtido);
-                
+
                   ?>
                   <?php foreach ($listaTabelaContas as $item) {  ?>
                     <tr>
+                    <?PHP echo $item['nomeConta'] ?>
                       <td> <?PHP echo $item['nomeConta'] ?> </td>
                       <td> <?PHP echo $item['email'] ?> </td>
-                      <td> <?PHP echo $item['senha'] ?> </td>
+                      <td> <?PHP echo base64_decode($item['senha']); ?> </td>
                       <td> <?PHP echo $item['url'] ?> </td>
                       <td> <?PHP echo $item['tipoConta'] ?> </td>
                       <td> <?PHP echo "$nome_sessao" ?> </td>
@@ -328,7 +341,7 @@ $nome_sessao =  $_SESSION['usuario'];
 
 
                 <?php } ?>
-                    
+
               </tbody>
             </table>
 
