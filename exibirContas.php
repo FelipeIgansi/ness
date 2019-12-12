@@ -282,7 +282,14 @@ $nome_sessao =  $_SESSION['usuario'];
             }
            
             $InformacoesContas = $conta->loadByFk($idUsuario);
+            
+            foreach ($InformacoesContas as $value) {
+              $nomeConta = $value['nomeConta'];
+            }
 
+            if ($nomeConta == ""){
+              echo "<strong>Não ha contas vinculadas a esse usuario!</strong>";
+            }
             ?>
 
             <table class="table">
