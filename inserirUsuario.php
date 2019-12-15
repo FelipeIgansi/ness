@@ -235,14 +235,9 @@
                                 $nome =  $_GET["nome"];
                                 $email = $_GET["email"];
                                 $senha = $_GET["senha"];
-                                $re_senha = $_GET["re-senha"];
+                                $re_senha = $_GET["re-senha"];                              
 
-                                $caracEsp = '@!#$%&*(){}[]';
-                                $numeros = '0123456789';
-                                $minus = 'abcdefghijklmnopqrstuvwxyz';
-                                $maius = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-                                $usuario = new Usuario($nome, $email, $senha);
+                                $usuario = new Usuario($nome, $email, base64_encode($senha));
 
                                 $nomeTabela = $usuario ->loadIdByName($nome);
 
@@ -275,12 +270,12 @@
 
                                     $usuario->insert();
 
-
+                                    $senhaNova = base64_encode($senha);
                                     echo "
                                         <form action='index.php' method='get'>
                                                     <input type='hidden' name='nome' value='$nome'>
                                                     <input type='hidden' name='email' value='$email'>
-                                                    <input type='hidden' name='senha' value='$senha'>
+                                                    <input type='hidden' name='senha' value='$senhaNova'>
                                                     <h2>Pronto agora você está logado </h2>
                                                     <p>Para ir para o menu principal clique no botão a baixo!</p>
                                                     <button class='btn btn-info'>Voltar para home</button>

@@ -14,7 +14,7 @@
         $senha = $_GET['senha'];
 
         $usuario = new validaLoginClass();
-        $usuario-> login( $_GET['nome'], md5("$senha"));
+        $usuario-> login( $_GET['nome'], base64_decode("$senha"));
         $nome = $_GET['nome'];
         
         $_SESSION['usuario'] = $nome;

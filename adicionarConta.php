@@ -1,10 +1,10 @@
 <?PHP
-  require_once('config.php');
-  include('conexao.php');
-  error_reporting(0);
-  session_start();
-  $nome_sessao =  $_SESSION['usuario'];
-    
+require_once('config.php');
+include('conexao.php');
+error_reporting(0);
+session_start();
+$nome_sessao =  $_SESSION['usuario'];
+
 ?>
 
 
@@ -105,7 +105,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -114,7 +114,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-                            
+
                         </li>
 
                         <!-- Nav Item - Alerts -->
@@ -237,11 +237,11 @@
                             $usuario = new Usuario();
                             $nome = $_GET["nome"];
 
-                            if ($nome_sessao <> ""){
+                            if ($nome_sessao <> "") {
                                 echo "
                                 <a class='nav-link dropdown-toggle' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                                 <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                                    <strong>",$nome_sessao,"</strong>
+                                    <strong>", $nome_sessao, "</strong>
                                 </span>
                                 </a>";
                             } else {
@@ -258,15 +258,15 @@
                             ?>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Sair
-                                </a>
+                                    <a class="dropdown-item" href="perfil.php">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Perfil
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Sair
+                                    </a>
                             </div>
                         </li>
 
@@ -311,16 +311,16 @@
                             </select>
                         </div>
                         <?php
-                        
+
                         $ListafkUsuario = $usuario->loadIdByName($nome_sessao);
 
                         //forma de mostrar o valor de um array
                         foreach ($ListafkUsuario as $value) {
-                          $fkUsuario = $value['idUsuario'];
+                            $fkUsuario = $value['idUsuario'];
                         }
-                                               
+
                         ?>
-                        <div class="form-group">                           
+                        <div class="form-group">
                             <input type="hidden" name="fk_usuario" value="<?php echo $fkUsuario ?>">
                         </div>
                         <button type="submit" class="btn btn-primary">Criar conta</button>
